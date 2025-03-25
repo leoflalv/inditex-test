@@ -1,0 +1,43 @@
+.categoryRowWrapper {
+  border: 2px solid #000;
+  border-radius: 0.5rem;
+  width: 100%;
+  margin: 1rem 0;
+}
+
+.categoryRow {
+    width: 100%;
+  padding: 1rem;
+  min-height: 10rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background-color: #fff;
+}
+
+.alignLeft {
+  justify-content: flex-start;
+}
+
+.alignCenter {
+  justify-content: center;
+}
+
+.alignRight {
+  justify-content: flex-end;
+}
+
+.addButton {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 0.25rem;
+  background-color: #4caf50;
+  color: #fff;
+  cursor: pointer;
+}
+
+.addButton:hover {
+  background-color: #388e3c;
+}

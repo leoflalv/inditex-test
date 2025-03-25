@@ -1,7 +1,5 @@
 .productCardContainer {
   position: relative;
-  width: 100%;
-  max-width: 100%;
   margin: 1rem auto;
   overflow: visible;
 }
@@ -10,6 +8,8 @@
   border: 1px solid #ccc;
   border-radius: 0.5rem;
   box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.1);
+  height: 20rem;
+  width: 15rem;
   overflow: hidden;
   background-color: #fff;
 }
@@ -22,11 +22,13 @@
 .productImage {
   width: 100%;
   height: auto;
-  aspect-ratio: 16 / 9;
+  max-height: 80%;
   object-fit: cover;
 }
 
 .productDetails {
+  position: absolute;
+  bottom: 0;
   padding: 1rem;
   padding-bottom: 0.1rem;
   color: var(--dark-text);
@@ -37,7 +39,6 @@
 }
 
 .price {
-  text-align: right;
   margin-top: 1rem;
   font-weight: bold;
   font-size: 1.1rem;

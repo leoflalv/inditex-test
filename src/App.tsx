@@ -6,9 +6,7 @@ import styles from './App.module.css';
 const App = () => (
   <div className={styles.mainContainer}>
     <Template>
-      <div style={{ height: '200px', width: '300px' }}>
-        <CategoryEditor />
-      </div>
+      <CategoryEditor />
     </Template>
   </div>
 );
