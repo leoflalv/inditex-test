@@ -1,14 +1,16 @@
-import Category from './pages/Category';
+import CategoryEditor from './category/presentation/categoryEditor';
 import Template from './shared/presentation/template';
 
 import styles from './App.module.css';
 
 const App = () => (
   <div className={styles.mainContainer}>
-    <Template >
-      <Category />
+    <Template>
+      <div style={{ height: '200px', width: '300px' }}>
+        <CategoryEditor />
+      </div>
     </Template>
   </div>
-)
+);
 
 export default App;

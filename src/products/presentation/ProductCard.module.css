@@ -1,0 +1,65 @@
+.productCardContainer {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  margin: 1rem auto;
+  overflow: visible;
+}
+
+.productCard {
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  background-color: #fff;
+}
+
+.imageWrapper {
+  width: 100%;
+  overflow: hidden;
+}
+
+.productImage {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.productDetails {
+  padding: 1rem;
+  padding-bottom: 0.1rem;
+  color: var(--dark-text);
+}
+
+.productDetails h2 {
+  margin: 0 0 0.5rem 0;
+}
+
+.price {
+  text-align: right;
+  margin-top: 1rem;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.removeButton {
+  position: absolute;
+  top: -0.3rem;
+  right: -0.3rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  border: none;
+  border-radius: 50%;
+  background-color: #f44336;
+  color: #fff;
+  font-size: 0.8rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.removeButton:hover {
+  background-color: #d32f2f;
+}
