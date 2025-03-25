@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 
-import ProductCard from '../../../products/presentation/ProductCard';
+import { useProductModal } from '../../../products/presentation/context/ProductModalContext';
+import ProductCard from '../../../products/presentation/productCard';
 import { CategorySection } from '../../domain/category';
 
 import styles from './CategoryRow.module.css';
@@ -12,27 +13,32 @@ interface CategoryRowProps {
 }
 
 const CategoryRow = ({ section, onAddProduct, onRemoveProduct }: CategoryRowProps) => {
-  const a = 2;
   const { template, products } = section;
+
+  const { openModal } = useProductModal();
 
   return (
     <div className={styles.categoryRowWrapper}>
       <div
-        className={classNames(
-          styles.categoryRow,
-          template?.alignment === 'left' && styles.alignLeft,
-          template?.alignment === 'center' && styles.alignCenter,
-          template?.alignment === 'right' && styles.alignRight,
-        )}
+        className={classNames(styles.categoryRow, {
+          [styles.alignLeft]: !template || template === 'left',
+          [styles.alignCenter]: template === 'center',
+          [styles.alignRight]: template === 'right',
+        })}
       >
         {products.map((product) => (
           <ProductCard key={product.id} product={product} onRemove={() => {}} />
         ))}
       </div>
-      {/* Show an add button (if desired) */}
-      <button className={styles.addButton} onClick={() => {}}>
-        Add Product
-      </button>
+      <div className={styles.buttonContainer}>
+        <button
+          title="Add Product"
+          className={styles.addButton}
+          onClick={() => openModal(section.index)}
+        >
+          +
+        </button>
+      </div>
     </div>
   );
 };

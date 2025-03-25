@@ -12,6 +12,4 @@ export interface CategorySection {
   products: Product[];
 }
 
-export interface Template {
-  alignment: 'left' | 'right' | 'center';
-}
+type Template = 'left' | 'right' | 'center';

@@ -1,62 +1,36 @@
+import { Product } from '../../../products/domain/product';
+import { useProductModal } from '../../../products/presentation/context/ProductModalContext';
+import ProductForm from '../../../products/presentation/productForm';
+import { Modal } from '../../../shared/components/modal/Modal';
 import { Category } from '../../domain/category';
 import CategoryRow from '../categoryRow';
 
-export const CATEGORY: Category = {
-  id: 'cat-1',
-  name: 'Electronics',
-  sections: [
-    {
-      index: 1,
-      products: [
-        {
-          category: 'Electronics',
-          id: 'prod-1',
-          image: 'https://via.placeholder.com/150',
-          index: 1,
-          name: 'Smartphone',
-          price: 699.99,
-        },
-        {
-          category: 'Electronics',
-          id: 'prod-2',
-          image: 'https://via.placeholder.com/150',
-          index: 2,
-          name: 'Laptop',
-          price: 999.99,
-        },
-        {
-          category: 'Electronics',
-          id: 'prod-3',
-          image: 'https://via.placeholder.com/150',
-          index: 3,
-          name: 'Headphones',
-          price: 199.99,
-        },
-      ],
-      template: { alignment: 'center' },
-    },
-    {
-      index: 2,
-      products: [
-        {
-          category: 'Electronics',
-          id: 'prod-4',
-          image: 'https://via.placeholder.com/150',
-          index: 1,
-          name: 'Tablet',
-          price: 399.99,
-        },
-      ],
-      template: { alignment: 'left' },
-    },
-  ],
-};
+import styles from './CategoryEditor.module.css';
 
-const CategoryEditor = () => (
-  <>
-    <h1>CategoryEditor</h1>
-    <CategoryRow section={CATEGORY.sections[0]} />
-  </>
-);
+interface CategoryEditorProps {
+  category: Category;
+  handleUpdate?: (category: Category) => void;
+}
+
+const CategoryEditor = ({ category, handleUpdate = () => {} }: CategoryEditorProps) => {
+  const { isOpen, closeModal } = useProductModal();
+
+  function handleSubmit(product: Partial<Product>) {
+    return null;
+  }
+
+  return (
+    <div className={styles.container}>
+      <h1>CategoryEditor</h1>
+      <div className={styles.rowsContainer}>
+        {category?.sections.map((section) => <CategoryRow key={section.index} section={section} />)}
+      </div>
+
+      <Modal isOpen={isOpen} onClose={closeModal} title="Add New Product">
+        <ProductForm onSubmit={handleSubmit} onCancel={closeModal} />
+      </Modal>
+    </div>
+  );
+};
 
 export default CategoryEditor;
