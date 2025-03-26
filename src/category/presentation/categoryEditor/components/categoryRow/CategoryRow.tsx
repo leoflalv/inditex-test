@@ -14,7 +14,7 @@ interface CategoryRowProps {
 }
 
 const CategoryRow = ({ section }: CategoryRowProps) => {
-  const { removeProduct } = useCategoryManager();
+  const { isEditMode, removeProduct } = useCategoryManager();
   const { template, products } = section;
 
   const { openModal } = useProductModal();
@@ -25,6 +25,7 @@ const CategoryRow = ({ section }: CategoryRowProps) => {
         [styles.alignLeft]: !template || template === 'left',
         [styles.alignCenter]: template === 'center',
         [styles.alignRight]: template === 'right',
+        [styles.editMode]: isEditMode,
       })}
     >
       <div className={styles.rowContainer}>
@@ -39,9 +40,11 @@ const CategoryRow = ({ section }: CategoryRowProps) => {
           </SortableContext>
         </div>
       </div>
-      <div className={styles.buttonContainer}>
-        <AddButton onClick={() => openModal(section.index)} />
-      </div>
+      {isEditMode && (
+        <div className={styles.buttonContainer}>
+          <AddButton onClick={() => openModal(section.index)} />
+        </div>
+      )}
     </div>
   );
 };

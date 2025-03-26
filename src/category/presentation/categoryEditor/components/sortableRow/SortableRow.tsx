@@ -2,6 +2,7 @@ import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 
 import { CategorySection } from '../../../category/domain/category';
+import { useCategoryManager } from '../../context/categoryManagerContext';
 import CategoryRow from '../categoryRow/CategoryRow';
 
 interface SortableRowProps {
@@ -10,8 +11,11 @@ interface SortableRowProps {
 }
 
 const SortableRow = ({ section, id }: SortableRowProps) => {
+  const { isEditMode } = useCategoryManager();
+
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
     id,
+    disabled: !isEditMode,
   });
 
   const style = {

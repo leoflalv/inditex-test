@@ -1,6 +1,7 @@
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 
+import { useCategoryManager } from '../../../category/presentation/categoryEditor/context/categoryManagerContext';
 import { Product } from '../../domain/product';
 import ProductCard from '../productCard/ProductCard';
 
@@ -10,8 +11,11 @@ interface SortableProductCardProps {
 }
 
 const SortableProductCard = ({ product, onRemove }: SortableProductCardProps) => {
+  const { isEditMode } = useCategoryManager();
+
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
     id: product.id,
+    disabled: !isEditMode,
   });
 
   const style = {
