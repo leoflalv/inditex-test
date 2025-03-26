@@ -2,11 +2,11 @@ import classNames from 'classnames';
 
 import { useProductModal } from '../../../products/presentation/context/ProductModalContext';
 import ProductCard from '../../../products/presentation/productCard';
+import AddButton from '../../../shared/presentation/addButton';
 import { CategorySection } from '../../domain/category';
 import { useCategoryManager } from '../../usecase/useCategoryManager';
 
 import styles from './CategoryRow.module.css';
-import AddButton from '../../../shared/presentation/addButton';
 
 interface CategoryRowProps {
   section: CategorySection;

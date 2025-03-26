@@ -7,6 +7,7 @@ export interface Category {
 }
 
 export interface CategorySection {
+  id: string;
   index: number;
   template?: Template;
   products: Product[];

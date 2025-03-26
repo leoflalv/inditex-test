@@ -1,9 +1,9 @@
 import classNames from 'classnames';
 
 import { Product } from '../../../products/domain/product';
-import Modal from '../../../shared/presentation/ui/modal';
 import { useProductModal } from '../../../products/presentation/context/ProductModalContext';
 import ProductForm from '../../../products/presentation/productForm';
+import Modal from '../../../shared/presentation/ui/modal';
 import { Category } from '../../domain/category';
 import { useCategoryManager } from '../../usecase/useCategoryManager';
 import CategoryRow from '../categoryRow';

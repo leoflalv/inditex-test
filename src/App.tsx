@@ -1,7 +1,7 @@
 import { Category } from './category/domain/category';
-import { ProductModalProvider } from './products/presentation/context/ProductModalContext';
 import CategoryEditor from './category/presentation/categoryEditor';
 import { CategoryManagerProvider } from './category/usecase/useCategoryManager';
+import { ProductModalProvider } from './products/presentation/context/ProductModalContext';
 import Template from './shared/presentation/template';
 
 import styles from './App.module.css';
@@ -11,6 +11,7 @@ export const CATEGORY: Category = {
   name: 'Electronics',
   sections: [
     {
+      id: crypto.randomUUID(),
       index: 1,
       products: [
         {
@@ -41,6 +42,7 @@ export const CATEGORY: Category = {
       template: 'center',
     },
     {
+      id: crypto.randomUUID(),
       index: 2,
       products: [
         {
