@@ -12,12 +12,7 @@ import { Category } from '../../../domain/category';
 interface UseDragAndDropProps {
   category: Category;
   moveRow: (oldIndex: number, newIndex: number) => void;
-  moveProductToAnotherPosition: (
-    productId: string,
-    overProductId: string,
-    activeSectionId: string,
-    overSectionId: string,
-  ) => void;
+  moveProductToAnotherPosition: (productId: string, overProductId: string) => void;
 }
 
 function useDragAndDrop({ category, moveRow, moveProductToAnotherPosition }: UseDragAndDropProps) {
@@ -79,7 +74,7 @@ function useDragAndDrop({ category, moveRow, moveProductToAnotherPosition }: Use
         const overSectionProducts = overSection.products.length;
 
         if (activeSection.id !== overSection.id && overSectionProducts >= 3) {
-          return; // Don't allow dropping if target section already has 3 products
+          return;
         }
 
         const activeProduct = activeSection.products.find(
@@ -89,12 +84,7 @@ function useDragAndDrop({ category, moveRow, moveProductToAnotherPosition }: Use
         const overProduct = overSection.products.find((product) => product.id === overProductId);
 
         if (activeProduct && overProduct) {
-          moveProductToAnotherPosition(
-            activeProduct.id,
-            overProduct.id,
-            activeSection.id,
-            overSection.id,
-          );
+          moveProductToAnotherPosition(activeProduct.id, overProduct.id);
         }
       }
     }

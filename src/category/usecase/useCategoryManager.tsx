@@ -1,7 +1,7 @@
 import { createContext, useContext, useState } from 'react';
 
 import { Product } from '../../products/domain/product';
-import { Category, Template } from '../domain/category';
+import { Category, CategorySection, Template } from '../domain/category';
 
 interface CategoryManager {
   category?: Category;
@@ -9,12 +9,7 @@ interface CategoryManager {
   addProduct: (product: Product, rowIndex: number, columnIndex?: number) => void;
   removeProduct: (productId: string) => void;
   modifyRowTemplate: (rowIndex: number, template: Template) => void;
-  moveProductToAnotherPosition: (
-    productId: string,
-    targetProductId: string,
-    sourceRowId: string,
-    targetRowId: string,
-  ) => void;
+  moveProductToAnotherPosition: (currentProductId: string, targetProductId: string) => void;
   addRow: () => void;
   removeRow: (rowIndex: number) => void;
 }
@@ -102,40 +97,50 @@ export const CategoryManagerProvider = ({
     });
   }
 
-  function moveProductToAnotherPosition(
-    productId: string,
-    targetProductId: string,
-    sourceRowId: string,
-    targetRowId: string,
-  ) {
+  function moveProductToAnotherPosition(currentProductId: string, targetProductId: string) {
     setCategory((prev) => {
-      const newSections = [...prev.sections];
+      const sections = [...prev.sections];
 
-      const sourceSection = newSections.find((section) => section.id === sourceRowId);
-      const targetSection = newSections.find((section) => section.id === targetRowId);
+      const sourceRowId = prev.sections.find((section) =>
+        section.products.some((p) => p.id === currentProductId),
+      )?.id;
+      const targetRowId = prev.sections.find((section) =>
+        section.products.some((p) => p.id === targetProductId),
+      )?.id;
+
+      const sourceSection = sections.find((section) => section.id === sourceRowId);
+      const targetSection = sections.find((section) => section.id === targetRowId);
 
       if (!sourceSection || !targetSection) return prev;
 
-      const sourceProductIndex = sourceSection.products.findIndex((p) => p.id === productId);
-      const targetProductIndex = targetSection.products.findIndex((p) => p.id === targetProductId);
+      const sourceProducts = [...(sourceSection?.products ?? [])];
+      const targetProducts = [...(targetSection?.products ?? [])];
+
+      const sourceProductIndex = sourceProducts.findIndex((p) => p.id === currentProductId);
+      const targetProductIndex = targetProducts.findIndex((p) => p.id === targetProductId);
 
       if (sourceProductIndex === -1 || targetProductIndex === -1) return prev;
 
-      const [movedProduct] = sourceSection.products.splice(sourceProductIndex, 1);
-
       if (sourceSection.id === targetSection.id) {
         // Moving within the same section
-        sourceSection.products.splice(targetProductIndex, 0, movedProduct);
-        sourceSection.products = sourceSection.products.map((p, idx) => ({ ...p, index: idx }));
+        const [movedProduct] = targetProducts.splice(sourceProductIndex, 1);
+        targetProducts?.splice(targetProductIndex, 0, movedProduct);
       } else {
         // Moving to a different section
+        const [movedProduct] = sourceProducts.splice(sourceProductIndex, 1);
         targetSection.products.splice(targetProductIndex, 0, {
           ...movedProduct,
           index: targetProductIndex,
         });
-        sourceSection.products = sourceSection.products.map((p, idx) => ({ ...p, index: idx }));
-        targetSection.products = targetSection.products.map((p, idx) => ({ ...p, index: idx }));
       }
+
+      sourceSection.products = sourceProducts;
+      targetSection.products = targetProducts;
+
+      const newSections = sections
+        .map((section) => (section.id === sourceSection.id ? sourceSection : section))
+        .map((section) => (section.id === targetSection.id ? targetSection : section))
+        .map((section, idx) => ({ ...section, index: idx }));
 
       return { ...prev, sections: newSections };
     });
@@ -143,10 +148,10 @@ export const CategoryManagerProvider = ({
 
   function addRow() {
     setCategory((prev) => {
-      const newRow = {
+      const newRow: CategorySection = {
         id: crypto.randomUUID(),
         index: 0,
-        template: 'left' as Template,
+        template: 'left',
         products: [],
       };
       const newSections = [...prev.sections];
