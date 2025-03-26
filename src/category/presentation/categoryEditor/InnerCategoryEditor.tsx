@@ -30,8 +30,12 @@ const InnerCategoryEditor = () => {
     <div className={styles.container}>
       <div className={styles.topSectionContainer}>
         <h1 className={classNames('header1', styles.header)}>{category?.name}</h1>
-        <Button onClick={() => setEditMode(!isEditMode)} variant="text">
-          <EditIcon size={30} color={isEditMode ? '#4caf50' : undefined} />
+        <Button
+          data-testid="edit-mode-toggle"
+          onClick={() => setEditMode(!isEditMode)}
+          variant="text"
+        >
+          <EditIcon size={30} className={isEditMode ? styles.activeEditButton : ''} />
         </Button>
       </div>
       <DndContext sensors={sensors} onDragEnd={handleDragEnd} onDragOver={handleDragOver}>

@@ -4,15 +4,15 @@ import { useCategoryManager } from '../../context/categoryManagerContext';
 import styles from './EditModeFooter.module.css';
 
 const EditModeFooter = () => {
-  const { saveChanges, cancelChanges } = useCategoryManager();
+  const { cancelChanges } = useCategoryManager();
 
   return (
-    <div className={styles.footer}>
+    <div data-testid="edit-mode-footer" className={styles.footer}>
       <div className={styles.footerContent}>
         <Button variant="outlined" onClick={cancelChanges} className={styles.cancelButton}>
           Cancel
         </Button>
-        <Button onClick={saveChanges} className={styles.saveButton}>
+        <Button onClick={() => {}} className={styles.saveButton}>
           Save Changes
         </Button>
       </div>
