@@ -14,7 +14,6 @@ interface CategoryManager {
   moveProductToAnotherPosition: (currentProductId: string, targetProductId: string) => void;
   addRow: () => void;
   removeRow: (rowIndex: number) => void;
-  saveChanges: () => void;
   cancelChanges: () => void;
 }
 
@@ -29,7 +28,6 @@ const CategoryManagerContext = createContext<CategoryManager>({
   moveProductToAnotherPosition: () => {},
   addRow: () => {},
   removeRow: () => {},
-  saveChanges: () => {},
   cancelChanges: () => {},
 });
 
@@ -50,13 +48,12 @@ export const CategoryManagerProvider = ({
     if (isEdit && !isEditMode) {
       setBackupCategory(category);
     }
-    setIsEditMode(isEdit);
-  };
 
-  const saveChanges = () => {
-    setEditMode(false);
-    setBackupCategory(null);
-    // Here you would typically make an API call to save the changes
+    if (!isEdit && isEditMode && backupCategory) {
+      setCategory(backupCategory);
+    }
+
+    setIsEditMode(isEdit);
   };
 
   const cancelChanges = () => {
@@ -214,7 +211,6 @@ export const CategoryManagerProvider = ({
         moveProductToAnotherPosition,
         addRow,
         removeRow,
-        saveChanges,
         cancelChanges,
       }}
     >

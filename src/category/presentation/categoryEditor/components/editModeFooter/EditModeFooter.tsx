@@ -1,3 +1,4 @@
+import Button from '../../../../../shared/presentation/ui/button';
 import { useCategoryManager } from '../../context/categoryManagerContext';
 
 import styles from './EditModeFooter.module.css';
@@ -8,12 +9,12 @@ const EditModeFooter = () => {
   return (
     <div className={styles.footer}>
       <div className={styles.footerContent}>
-        <button onClick={cancelChanges} className={styles.cancelButton}>
+        <Button variant="outlined" onClick={cancelChanges} className={styles.cancelButton}>
           Cancel
-        </button>
-        <button onClick={saveChanges} className={styles.saveButton}>
+        </Button>
+        <Button onClick={saveChanges} className={styles.saveButton}>
           Save Changes
-        </button>
+        </Button>
       </div>
     </div>
   );
