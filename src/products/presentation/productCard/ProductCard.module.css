@@ -6,10 +6,10 @@
 
 .productCard {
   border: 1px solid #ccc;
+  height: 25rem;
+  width: 100%;
   border-radius: 0.5rem;
   box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.1);
-  height: 25rem;
-  width: 20rem;
   overflow: hidden;
   background-color: #fff;
 }

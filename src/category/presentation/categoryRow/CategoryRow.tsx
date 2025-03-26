@@ -20,19 +20,24 @@ const CategoryRow = ({ section }: CategoryRowProps) => {
   const { openModal } = useProductModal();
 
   return (
-    <div className={styles.categoryRowWrapper}>
-      <div
-        className={classNames(styles.categoryRow, {
-          [styles.alignLeft]: !template || template === 'left',
-          [styles.alignCenter]: template === 'center',
-          [styles.alignRight]: template === 'right',
-        })}
-      >
-        <SortableContext items={products.map((p) => p.id)} strategy={horizontalListSortingStrategy}>
-          {products.map((product) => (
-            <SortableProductCard key={product.id} product={product} onRemove={removeProduct} />
-          ))}
-        </SortableContext>
+    <div
+      className={classNames(styles.container, {
+        [styles.alignLeft]: !template || template === 'left',
+        [styles.alignCenter]: template === 'center',
+        [styles.alignRight]: template === 'right',
+      })}
+    >
+      <div className={styles.rowContainer}>
+        <div className={styles.categoryRow}>
+          <SortableContext
+            items={products.map((p) => p.id)}
+            strategy={horizontalListSortingStrategy}
+          >
+            {products.map((product) => (
+              <SortableProductCard key={product.id} product={product} onRemove={removeProduct} />
+            ))}
+          </SortableContext>
+        </div>
       </div>
       <div className={styles.buttonContainer}>
         <AddButton onClick={() => openModal(section.index)} />

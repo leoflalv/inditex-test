@@ -23,7 +23,6 @@ const InnerCategoryEditor = () => {
   });
 
   function handleSubmit(product: Partial<Product>) {
-    console.log(product);
     return null;
   }
 
@@ -36,9 +35,11 @@ const InnerCategoryEditor = () => {
             items={category?.sections.map((section) => `row-${section.id}`) || []}
             strategy={verticalListSortingStrategy}
           >
-            {category?.sections.map((section) => (
-              <SortableRow key={section.id} id={`row-${section.id}`} section={section} />
-            ))}
+            <div>
+              {category?.sections.map((section) => (
+                <SortableRow key={section.id} id={`row-${section.id}`} section={section} />
+              ))}
+            </div>
           </SortableContext>
         </div>
       </DndContext>

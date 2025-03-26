@@ -1,17 +1,23 @@
-.categoryRowWrapper {
+.container {
   border: 0.5px solid #000;
   border-radius: 0.5rem;
   width: 100%;
   margin: 1rem 0;
 }
 
+.rowContainer {
+  display: flex;
+  flex-direction: column;
+}
+
 .categoryRow {
   padding: 1rem 1rem 0;
   border-radius: 0.5rem;
   min-height: 10rem;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5rem;
+  justify-content: center; /* centers grid tracks if there are fewer than 3 items */
   background-color: #fff;
 }
 
