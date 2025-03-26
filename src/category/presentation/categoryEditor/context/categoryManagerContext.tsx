@@ -1,7 +1,7 @@
 import { createContext, useContext, useState } from 'react';
 
-import { Product } from '../../products/domain/product';
-import { Category, CategorySection, Template } from '../domain/category';
+import { Product } from '../../../../products/domain/product';
+import { Category, CategorySection, Template } from '../../../domain/category';
 
 interface CategoryManager {
   category?: Category;

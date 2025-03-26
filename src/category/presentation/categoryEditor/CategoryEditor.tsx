@@ -1,6 +1,7 @@
 import { Category } from '../../domain/category';
-import { CategoryManagerProvider } from '../../usecase/useCategoryManager';
 import InnerCategoryEditor from './InnerCategoryEditor';
+
+import { CategoryManagerProvider } from './context/categoryManagerContext';
 
 export const CATEGORY: Category = {
   id: 'cat-1',

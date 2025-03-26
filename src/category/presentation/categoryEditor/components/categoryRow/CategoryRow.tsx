@@ -1,11 +1,11 @@
 import classNames from 'classnames';
 import { horizontalListSortingStrategy, SortableContext } from '@dnd-kit/sortable';
 
-import { useProductModal } from '../../../products/presentation/context/ProductModalContext';
-import SortableProductCard from '../../../products/presentation/sortableProductCard/SortableProductCard';
-import AddButton from '../../../shared/presentation/addButton';
-import { CategorySection } from '../../domain/category';
-import { useCategoryManager } from '../../usecase/useCategoryManager';
+import { useProductModal } from '../../../../../products/presentation/context/ProductModalContext';
+import SortableProductCard from '../../../../../products/presentation/sortableProductCard';
+import AddButton from '../../../../../shared/presentation/addButton';
+import { CategorySection } from '../../../../domain/category';
+import { useCategoryManager } from '../../context/categoryManagerContext';
 
 import styles from './CategoryRow.module.css';
 

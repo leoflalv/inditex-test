@@ -1,9 +1,9 @@
-import { describe, expect,it } from 'vitest';
-import { act,renderHook } from '@testing-library/react';
+import { describe, expect, it } from 'vitest';
+import { act, renderHook } from '@testing-library/react';
 
-import { Product } from '../../../products/domain/product';
-import { Category } from '../../domain/category';
-import { CategoryManagerProvider, useCategoryManager } from '../useCategoryManager';
+import { Product } from '../../../../../products/domain/product';
+import { Category } from '../../../../domain/category';
+import { CategoryManagerProvider, useCategoryManager } from '../categoryManagerContext';
 
 const mockProduct: Product = {
   id: 'test-product-1',
@@ -19,6 +19,7 @@ const mockCategory: Category = {
   name: 'Test Category',
   sections: [
     {
+      id: 'section-1',
       index: 0,
       template: 'left',
       products: [
@@ -27,6 +28,7 @@ const mockCategory: Category = {
       ],
     },
     {
+      id: 'section-2',
       index: 1,
       template: 'center',
       products: [{ ...mockProduct, id: 'product-3', index: 0 }],

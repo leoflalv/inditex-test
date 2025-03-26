@@ -1,4 +1,4 @@
-import { useCategoryManager } from '../../usecase/useCategoryManager';
+import { useCategoryManager } from '../../context/categoryManagerContext';
 
 import styles from './EditModeFooter.module.css';
 

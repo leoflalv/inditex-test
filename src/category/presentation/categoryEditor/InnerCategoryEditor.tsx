@@ -8,10 +8,10 @@ import { useProductModal } from '../../../products/presentation/context/ProductM
 import ProductForm from '../../../products/presentation/productForm';
 import IconButton from '../../../shared/presentation/iconButton';
 import Modal from '../../../shared/presentation/ui/modal';
-import { useCategoryManager } from '../../usecase/useCategoryManager';
-import SortableRow from '../sortableRow/SortableRow';
-import EditModeFooter from './EditModeFooter';
 
+import EditModeFooter from './components/editModeFooter';
+import SortableRow from './components/sortableRow';
+import { useCategoryManager } from './context/categoryManagerContext';
 import useDragAndDrop from './hooks/useDragAndDrop';
 
 import styles from './InnerCategoryEditor.module.css';
