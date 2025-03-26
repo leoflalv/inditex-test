@@ -1,12 +1,10 @@
-import { EditIcon, ZaraIcon } from '../../../assets/icons';
-import IconButton from '../iconButton';
+import { ZaraIcon } from '../../../assets/icons';
 
 import styles from './Topbar.module.css';
 
 const TopBar = () => (
   <div className={styles.topbar}>
     <ZaraIcon size={70} />
-    <IconButton icon={<EditIcon />} />
   </div>
 );
 

@@ -1,6 +1,6 @@
 import { BaseIconProps } from './BaseIcon';
 
-export const EditIcon = ({ color = 'white', size = 24, className }: BaseIconProps) => (
+export const EditIcon = ({ color = '#3f3f3f', size = 24, className }: BaseIconProps) => (
   <svg
     fill={color}
     version="1.1"

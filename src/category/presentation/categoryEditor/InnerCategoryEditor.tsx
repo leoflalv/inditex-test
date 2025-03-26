@@ -12,6 +12,8 @@ import SortableRow from '../sortableRow/SortableRow';
 import useDragAndDrop from './hooks/useDragAndDrop';
 
 import styles from './InnerCategoryEditor.module.css';
+import IconButton from '../../../shared/presentation/iconButton';
+import { EditIcon } from '../../../assets/icons';
 
 const InnerCategoryEditor = () => {
   const { isOpen, closeModal } = useProductModal();
@@ -28,7 +30,10 @@ const InnerCategoryEditor = () => {
 
   return (
     <div className={styles.container}>
-      <h1 className={classNames('header1', styles.header)}>{category?.name}</h1>
+      <div className={styles.topSectionContainer}>
+        <h1 className={classNames('header1', styles.header)}>{category?.name}</h1>
+        <IconButton icon={<EditIcon />} />
+      </div>
       <DndContext sensors={sensors} onDragEnd={handleDragEnd} onDragOver={handleDragOver}>
         <div className={styles.rowsContainer}>
           <SortableContext
