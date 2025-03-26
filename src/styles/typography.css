@@ -1,0 +1,22 @@
+.header1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--dark-text);
+}
+
+.header2 {
+  font-size: 1.75rem;
+  font-weight: bold;
+  color: var(--dark-text);
+}
+
+.subtitle1 {
+  font-size: 1rem;
+  font-weight: bold;
+  color: var(--dark-text);
+}
+
+.paragraph1 {
+  font-size: 1.25rem;
+  color: var(--dark-text);
+}

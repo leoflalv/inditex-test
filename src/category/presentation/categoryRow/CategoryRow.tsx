@@ -3,16 +3,16 @@ import classNames from 'classnames';
 import { useProductModal } from '../../../products/presentation/context/ProductModalContext';
 import ProductCard from '../../../products/presentation/productCard';
 import { CategorySection } from '../../domain/category';
+import { useCategoryManager } from '../../usecase/useCategoryManager';
 
 import styles from './CategoryRow.module.css';
 
 interface CategoryRowProps {
   section: CategorySection;
-  onAddProduct?: () => void; // If you want to handle "Add" outside
-  onRemoveProduct?: (productId: string) => void;
 }
 
-const CategoryRow = ({ section, onAddProduct, onRemoveProduct }: CategoryRowProps) => {
+const CategoryRow = ({ section }: CategoryRowProps) => {
+  const { removeProduct } = useCategoryManager();
   const { template, products } = section;
 
   const { openModal } = useProductModal();
@@ -27,7 +27,7 @@ const CategoryRow = ({ section, onAddProduct, onRemoveProduct }: CategoryRowProp
         })}
       >
         {products.map((product) => (
-          <ProductCard key={product.id} product={product} onRemove={() => {}} />
+          <ProductCard key={product.id} product={product} onRemove={removeProduct} />
         ))}
       </div>
       <div className={styles.buttonContainer}>

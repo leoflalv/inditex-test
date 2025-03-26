@@ -1,8 +1,11 @@
+import classNames from 'classnames';
+
 import { Product } from '../../../products/domain/product';
 import { useProductModal } from '../../../products/presentation/context/ProductModalContext';
 import ProductForm from '../../../products/presentation/productForm';
-import { Modal } from '../../../shared/components/modal/Modal';
+import Modal from '../../../shared/presentation/modal';
 import { Category } from '../../domain/category';
+import { useCategoryManager } from '../../usecase/useCategoryManager';
 import CategoryRow from '../categoryRow';
 
 import styles from './CategoryEditor.module.css';
@@ -12,8 +15,9 @@ interface CategoryEditorProps {
   handleUpdate?: (category: Category) => void;
 }
 
-const CategoryEditor = ({ category, handleUpdate = () => {} }: CategoryEditorProps) => {
+const CategoryEditor = ({ category: _category, handleUpdate = () => {} }: CategoryEditorProps) => {
   const { isOpen, closeModal } = useProductModal();
+  const { category } = useCategoryManager();
 
   function handleSubmit(product: Partial<Product>) {
     return null;
@@ -21,7 +25,7 @@ const CategoryEditor = ({ category, handleUpdate = () => {} }: CategoryEditorPro
 
   return (
     <div className={styles.container}>
-      <h1>CategoryEditor</h1>
+      <h1 className={classNames('header1', styles.header)}>{category?.name}</h1>
       <div className={styles.rowsContainer}>
         {category?.sections.map((section) => <CategoryRow key={section.index} section={section} />)}
       </div>

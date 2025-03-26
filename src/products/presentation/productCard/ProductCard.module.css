@@ -8,8 +8,8 @@
   border: 1px solid #ccc;
   border-radius: 0.5rem;
   box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.1);
-  height: 20rem;
-  width: 15rem;
+  height: 25rem;
+  width: 20rem;
   overflow: hidden;
   background-color: #fff;
 }
@@ -36,12 +36,6 @@
 
 .productDetails h2 {
   margin: 0 0 0.5rem 0;
-}
-
-.price {
-  margin-top: 1rem;
-  font-weight: bold;
-  font-size: 1.1rem;
 }
 
 .removeButton {

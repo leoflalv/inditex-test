@@ -14,8 +14,8 @@ const ProductCard = ({ product, onRemove = () => {} }: ProductCardProps) => (
         <img src={product.image} alt={product.name} className={styles.productImage} />
       </div>
       <div className={styles.productDetails}>
-        <h2>{product.name}</h2>
-        <p className={styles.price}>
+        <h2 className="header2">{product.name}</h2>
+        <p className="subtitle">
           <strong>Price:</strong> {`${product.price.toFixed(2)} €`}
         </p>
       </div>
