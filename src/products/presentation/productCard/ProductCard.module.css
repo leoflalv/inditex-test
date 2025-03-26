@@ -21,9 +21,8 @@
 
 .productImage {
   width: 100%;
-  height: auto;
-  max-height: 80%;
-  object-fit: cover;
+  height: 18rem;
+  object-fit: fill;
 }
 
 .productDetails {

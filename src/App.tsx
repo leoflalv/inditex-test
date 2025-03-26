@@ -16,7 +16,7 @@ export const CATEGORY: Category = {
         {
           category: 'Electronics',
           id: 'prod-1',
-          image: 'https://via.placeholder.com/150',
+          image: 'https://picsum.photos/200/300',
           index: 1,
           name: 'Smartphone',
           price: 699.99,
@@ -24,7 +24,7 @@ export const CATEGORY: Category = {
         {
           category: 'Electronics',
           id: 'prod-2',
-          image: 'https://via.placeholder.com/150',
+          image: 'https://picsum.photos/200/300',
           index: 2,
           name: 'Laptop',
           price: 999.99,
@@ -32,7 +32,7 @@ export const CATEGORY: Category = {
         {
           category: 'Electronics',
           id: 'prod-3',
-          image: 'https://via.placeholder.com/150',
+          image: 'https://picsum.photos/200/300',
           index: 3,
           name: 'Headphones',
           price: 199.99,
@@ -46,7 +46,7 @@ export const CATEGORY: Category = {
         {
           category: 'Electronics',
           id: 'prod-4',
-          image: 'https://via.placeholder.com/150',
+          image: 'https://picsum.photos/200/300',
           index: 1,
           name: 'Tablet',
           price: 399.99,

@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes, FC, ReactNode } from 'react';
+import { ButtonHTMLAttributes, ReactNode } from 'react';
 import classNames from 'classnames';
 
 import styles from './Button.module.css';
@@ -19,7 +19,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   classes?: string;
 }
 
-const Button: FC<ButtonProps> = ({
+const Button = ({
   color = 'primary',
   variant = 'contained',
   size = 'medium',
@@ -32,7 +32,7 @@ const Button: FC<ButtonProps> = ({
   children,
   disabled,
   ...props
-}) => {
+}: ButtonProps) => {
   const buttonClasses = [
     styles.button,
     styles[`button-${color}`],
