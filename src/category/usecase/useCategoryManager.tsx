@@ -5,6 +5,8 @@ import { Category, CategorySection, Template } from '../domain/category';
 
 interface CategoryManager {
   category?: Category;
+  isEditMode: boolean;
+  setEditMode: (isEdit: boolean) => void;
   moveRow: (rowIndex: number, newRowIndex: number) => void;
   addProduct: (product: Product, rowIndex: number, columnIndex?: number) => void;
   removeProduct: (productId: string) => void;
@@ -12,10 +14,14 @@ interface CategoryManager {
   moveProductToAnotherPosition: (currentProductId: string, targetProductId: string) => void;
   addRow: () => void;
   removeRow: (rowIndex: number) => void;
+  saveChanges: () => void;
+  cancelChanges: () => void;
 }
 
 const CategoryManagerContext = createContext<CategoryManager>({
   category: undefined,
+  isEditMode: false,
+  setEditMode: () => {},
   moveRow: () => {},
   addProduct: () => {},
   removeProduct: () => {},
@@ -23,6 +29,8 @@ const CategoryManagerContext = createContext<CategoryManager>({
   moveProductToAnotherPosition: () => {},
   addRow: () => {},
   removeRow: () => {},
+  saveChanges: () => {},
+  cancelChanges: () => {},
 });
 
 interface CategoryManagerProviderProps {
@@ -35,6 +43,29 @@ export const CategoryManagerProvider = ({
   category: initialCategory,
 }: CategoryManagerProviderProps) => {
   const [category, setCategory] = useState<Category>(initialCategory);
+  const [isEditMode, setIsEditMode] = useState(false);
+  const [backupCategory, setBackupCategory] = useState<Category | null>(null);
+
+  const setEditMode = (isEdit: boolean) => {
+    if (isEdit && !isEditMode) {
+      setBackupCategory(category);
+    }
+    setIsEditMode(isEdit);
+  };
+
+  const saveChanges = () => {
+    setEditMode(false);
+    setBackupCategory(null);
+    // Here you would typically make an API call to save the changes
+  };
+
+  const cancelChanges = () => {
+    if (backupCategory) {
+      setCategory(backupCategory);
+    }
+    setEditMode(false);
+    setBackupCategory(null);
+  };
 
   function moveRow(rowIndex: number, newRowIndex: number) {
     setCategory((prev) => {
@@ -174,6 +205,8 @@ export const CategoryManagerProvider = ({
     <CategoryManagerContext.Provider
       value={{
         category,
+        isEditMode,
+        setEditMode,
         moveRow,
         addProduct,
         removeProduct,
@@ -181,6 +214,8 @@ export const CategoryManagerProvider = ({
         moveProductToAnotherPosition,
         addRow,
         removeRow,
+        saveChanges,
+        cancelChanges,
       }}
     >
       {children}
