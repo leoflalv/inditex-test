@@ -6,6 +6,7 @@ import { CategorySection } from '../../domain/category';
 import { useCategoryManager } from '../../usecase/useCategoryManager';
 
 import styles from './CategoryRow.module.css';
+import AddButton from '../../../shared/presentation/addButton';
 
 interface CategoryRowProps {
   section: CategorySection;
@@ -31,13 +32,7 @@ const CategoryRow = ({ section }: CategoryRowProps) => {
         ))}
       </div>
       <div className={styles.buttonContainer}>
-        <button
-          title="Add Product"
-          className={styles.addButton}
-          onClick={() => openModal(section.index)}
-        >
-          +
-        </button>
+        <AddButton onClick={() => openModal(section.index)} />
       </div>
     </div>
   );

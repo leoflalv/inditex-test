@@ -1,3 +1,4 @@
+import RemoveButton from '../../../shared/presentation/removeButton/RemoveButton';
 import { Product } from '../../domain/product';
 
 import styles from './ProductCard.module.css';
@@ -20,13 +21,7 @@ const ProductCard = ({ product, onRemove = () => {} }: ProductCardProps) => (
         </p>
       </div>
       {onRemove && (
-        <button
-          className={styles.removeButton}
-          onClick={() => onRemove(product.id)}
-          aria-label="Remove product"
-        >
-          <span>X</span>
-        </button>
+        <RemoveButton onClick={() => onRemove(product.id)} classes={styles.removeButton} />
       )}
     </div>
   </div>
