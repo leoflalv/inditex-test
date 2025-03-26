@@ -1,5 +1,6 @@
 import { FormEvent, useRef } from 'react';
 
+import Button from '../../../shared/presentation/ui/button';
 import { Product } from '../../domain/product';
 
 import styles from './ProductForm.module.css';
@@ -50,12 +51,10 @@ const ProductForm = ({ onSubmit, onCancel }: ProductFormProps) => {
       </div>
 
       <div className={styles.buttonGroup}>
-        <button type="button" onClick={onCancel} className={styles.cancelButton}>
+        <Button variant="outlined" onClick={onCancel}>
           Cancel
-        </button>
-        <button type="submit" className={styles.submitButton}>
-          Create Product
-        </button>
+        </Button>
+        <Button type="submit">Create Product</Button>
       </div>
     </form>
   );

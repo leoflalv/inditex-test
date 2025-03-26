@@ -4,10 +4,7 @@ import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
 
 import { EditIcon } from '../../../assets/icons';
 import { Product } from '../../../products/domain/product';
-import { useProductModal } from '../../../products/presentation/context/ProductModalContext';
-import ProductForm from '../../../products/presentation/productForm';
 import Button from '../../../shared/presentation/ui/button';
-import Modal from '../../../shared/presentation/ui/modal';
 
 import EditModeFooter from './components/editModeFooter';
 import SortableRow from './components/sortableRow';
@@ -17,7 +14,6 @@ import useDragAndDrop from './hooks/useDragAndDrop';
 import styles from './InnerCategoryEditor.module.css';
 
 const InnerCategoryEditor = () => {
-  const { isOpen, closeModal } = useProductModal();
   const { category, moveRow, moveProductToAnotherPosition, isEditMode, setEditMode } =
     useCategoryManager();
   const { handleDragEnd, handleDragOver, sensors } = useDragAndDrop({
@@ -53,9 +49,6 @@ const InnerCategoryEditor = () => {
         </div>
       </DndContext>
 
-      <Modal isOpen={isOpen} onClose={closeModal} title="Add New Product">
-        <ProductForm onSubmit={handleSubmit} onCancel={closeModal} />
-      </Modal>
       {isEditMode && <EditModeFooter />}
     </div>
   );

@@ -33,13 +33,8 @@
   color: var(--dark-text);
 }
 
-.closeButton {
-  background: none;
-  border: none;
-  color: var(--dark-text);
-  font-size: 1.5rem;
-  cursor: pointer;
-  padding: 0.5rem;
+.closeIcon {
+  fill: var(--dark-text) !important;
 }
 
 .modalBody {

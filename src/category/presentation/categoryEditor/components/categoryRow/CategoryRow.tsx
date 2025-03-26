@@ -1,9 +1,10 @@
 import classNames from 'classnames';
 import { horizontalListSortingStrategy, SortableContext } from '@dnd-kit/sortable';
 
-import { useProductModal } from '../../../../../products/presentation/context/ProductModalContext';
+import ProductForm from '../../../../../products/presentation/productForm';
 import SortableProductCard from '../../../../../products/presentation/sortableProductCard';
 import AddButton from '../../../../../shared/presentation/addButton';
+import { useModal } from '../../../../../shared/presentation/ui/modal';
 import { CategorySection } from '../../../../domain/category';
 import { useCategoryManager } from '../../context/categoryManagerContext';
 
@@ -17,7 +18,11 @@ const CategoryRow = ({ section }: CategoryRowProps) => {
   const { isEditMode, removeProduct } = useCategoryManager();
   const { template, products } = section;
 
-  const { openModal } = useProductModal();
+  const { openModal, closeModal } = useModal();
+
+  function handleAddProduct() {
+    openModal('Add New Product', <ProductForm onSubmit={() => {}} onCancel={closeModal} />);
+  }
 
   return (
     <div
@@ -42,7 +47,7 @@ const CategoryRow = ({ section }: CategoryRowProps) => {
       </div>
       {isEditMode && (
         <div className={styles.buttonContainer}>
-          <AddButton onClick={() => openModal(section.index)} />
+          <AddButton onClick={handleAddProduct} />
         </div>
       )}
     </div>
