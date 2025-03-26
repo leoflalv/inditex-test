@@ -1,0 +1,64 @@
+{
+  "categories": [
+    {
+      "id": "1",
+      "name": "New Collection",
+      "sections": [
+        {
+          "id": "section-1",
+          "index": 0,
+          "template": "TWO_COLUMNS",
+          "products": [
+            {
+              "id": "1",
+              "name": "Oversized Denim Jacket",
+              "price": 49.95,
+              "image": "https://picsum.photos/200/300",
+              "category": "1",
+              "index": 0
+            },
+            {
+              "id": "2", 
+              "name": "Cargo Pants",
+              "price": 39.95,
+              "image": "https://picsum.photos/200/300",
+              "category": "1",
+              "index": 1
+            }
+          ]
+        },
+        {
+          "id": "section-2",
+          "index": 1,
+          "template": "THREE_COLUMNS",
+          "products": [
+            {
+              "id": "3",
+              "name": "Basic T-Shirt",
+              "price": 15.95,
+              "image": "https://picsum.photos/200/300",
+              "category": "1",
+              "index": 0
+            },
+            {
+              "id": "4",
+              "name": "Slim Fit Jeans",
+              "price": 45.95,
+              "image": "https://picsum.photos/200/300",
+              "category": "1",
+              "index": 1
+            },
+            {
+              "id": "5",
+              "name": "Leather Sneakers",
+              "price": 59.95,
+              "image": "https://picsum.photos/200/300",
+              "category": "1",
+              "index": 2
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
