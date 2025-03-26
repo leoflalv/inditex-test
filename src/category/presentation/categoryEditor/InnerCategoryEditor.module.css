@@ -26,3 +26,7 @@
   flex-direction: column;
   flex: 1;
 }
+
+.rowsEditMode {
+  padding-bottom: 5rem;
+}

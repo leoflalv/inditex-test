@@ -6,6 +6,7 @@ import { EditIcon } from '../../../assets/icons';
 import { Product } from '../../../products/domain/product';
 import Button from '../../../shared/presentation/ui/button';
 
+import AddNewRow from './components/addNewRow';
 import EditModeFooter from './components/editModeFooter';
 import SortableRow from './components/sortableRow';
 import { useCategoryManager } from './context/categoryManagerContext';
@@ -39,7 +40,11 @@ const InnerCategoryEditor = () => {
         </Button>
       </div>
       <DndContext sensors={sensors} onDragEnd={handleDragEnd} onDragOver={handleDragOver}>
-        <div className={styles.rowsContainer}>
+        <div
+          className={classNames(styles.rowsContainer, {
+            [styles.rowsEditMode]: isEditMode,
+          })}
+        >
           <SortableContext
             items={category?.sections.map((section) => `row-${section.id}`) || []}
             strategy={verticalListSortingStrategy}
@@ -50,6 +55,7 @@ const InnerCategoryEditor = () => {
               ))}
             </div>
           </SortableContext>
+          <AddNewRow />
         </div>
       </DndContext>
 

@@ -20,6 +20,8 @@ const CategoryRow = ({ section }: CategoryRowProps) => {
 
   const { openModal, closeModal } = useModal();
 
+  const fullSection = products.length === 3;
+
   function handleAddProduct() {
     openModal('Add New Product', <ProductForm onSubmit={() => {}} onCancel={closeModal} />);
   }
@@ -47,7 +49,7 @@ const CategoryRow = ({ section }: CategoryRowProps) => {
       </div>
       {isEditMode && (
         <div className={styles.buttonContainer}>
-          <AddButton onClick={handleAddProduct} />
+          <AddButton onClick={handleAddProduct} disabled={fullSection} />
         </div>
       )}
     </div>
