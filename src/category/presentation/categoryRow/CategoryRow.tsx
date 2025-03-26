@@ -1,7 +1,8 @@
 import classNames from 'classnames';
+import { horizontalListSortingStrategy, SortableContext } from '@dnd-kit/sortable';
 
 import { useProductModal } from '../../../products/presentation/context/ProductModalContext';
-import ProductCard from '../../../products/presentation/productCard';
+import SortableProductCard from '../../../products/presentation/sortableProductCard/SortableProductCard';
 import AddButton from '../../../shared/presentation/addButton';
 import { CategorySection } from '../../domain/category';
 import { useCategoryManager } from '../../usecase/useCategoryManager';
@@ -27,9 +28,11 @@ const CategoryRow = ({ section }: CategoryRowProps) => {
           [styles.alignRight]: template === 'right',
         })}
       >
-        {products.map((product) => (
-          <ProductCard key={product.id} product={product} onRemove={removeProduct} />
-        ))}
+        <SortableContext items={products.map((p) => p.id)} strategy={horizontalListSortingStrategy}>
+          {products.map((product) => (
+            <SortableProductCard key={product.id} product={product} onRemove={removeProduct} />
+          ))}
+        </SortableContext>
       </div>
       <div className={styles.buttonContainer}>
         <AddButton onClick={() => openModal(section.index)} />

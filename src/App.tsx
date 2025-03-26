@@ -64,7 +64,7 @@ const App = () => (
     <Template>
       <CategoryManagerProvider category={CATEGORY}>
         <ProductModalProvider>
-          <CategoryEditor category={CATEGORY} />
+          <CategoryEditor />
         </ProductModalProvider>
       </CategoryManagerProvider>
     </Template>

@@ -9,7 +9,12 @@ interface CategoryManager {
   addProduct: (product: Product, rowIndex: number, columnIndex?: number) => void;
   removeProduct: (productId: string) => void;
   modifyRowTemplate: (rowIndex: number, template: Template) => void;
-  moveProductToAnotherPosition: (productId: string, rowIndex: number, columnIndex: number) => void;
+  moveProductToAnotherPosition: (
+    productId: string,
+    targetProductId: string,
+    sourceRowId: string,
+    targetRowId: string,
+  ) => void;
   addRow: () => void;
   removeRow: (rowIndex: number) => void;
 }
@@ -97,18 +102,53 @@ export const CategoryManagerProvider = ({
     });
   }
 
-  function moveProductToAnotherPosition(productId: string, rowIndex: number, columnIndex: number) {
-    const product = category.sections
-      .flatMap((section) => section.products)
-      .find((product) => product.id === productId)!;
+  function moveProductToAnotherPosition(
+    productId: string,
+    targetProductId: string,
+    sourceRowId: string,
+    targetRowId: string,
+  ) {
+    setCategory((prev) => {
+      const newSections = [...prev.sections];
 
-    removeProduct(productId);
-    addProduct(product, rowIndex, columnIndex);
+      const sourceSection = newSections.find((section) => section.id === sourceRowId);
+      const targetSection = newSections.find((section) => section.id === targetRowId);
+
+      if (!sourceSection || !targetSection) return prev;
+
+      const sourceProductIndex = sourceSection.products.findIndex((p) => p.id === productId);
+      const targetProductIndex = targetSection.products.findIndex((p) => p.id === targetProductId);
+
+      if (sourceProductIndex === -1 || targetProductIndex === -1) return prev;
+
+      const [movedProduct] = sourceSection.products.splice(sourceProductIndex, 1);
+
+      if (sourceSection.id === targetSection.id) {
+        // Moving within the same section
+        sourceSection.products.splice(targetProductIndex, 0, movedProduct);
+        sourceSection.products = sourceSection.products.map((p, idx) => ({ ...p, index: idx }));
+      } else {
+        // Moving to a different section
+        targetSection.products.splice(targetProductIndex, 0, {
+          ...movedProduct,
+          index: targetProductIndex,
+        });
+        sourceSection.products = sourceSection.products.map((p, idx) => ({ ...p, index: idx }));
+        targetSection.products = targetSection.products.map((p, idx) => ({ ...p, index: idx }));
+      }
+
+      return { ...prev, sections: newSections };
+    });
   }
 
   function addRow() {
     setCategory((prev) => {
-      const newRow = { index: 0, template: 'left' as Template, products: [] };
+      const newRow = {
+        id: crypto.randomUUID(),
+        index: 0,
+        template: 'left' as Template,
+        products: [],
+      };
       const newSections = [...prev.sections];
       newSections.push(newRow);
       const reindexedSections = newSections.map((section, idx) => ({ ...section, index: idx }));
