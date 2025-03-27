@@ -36,8 +36,6 @@ const CategoryRow = ({ section }: CategoryRowProps) => {
     );
   }
 
-  console.log(template);
-
   return (
     <div
       className={classNames(styles.container, {

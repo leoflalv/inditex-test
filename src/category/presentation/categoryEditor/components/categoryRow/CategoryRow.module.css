@@ -1,6 +1,7 @@
 .container {
   width: 100%;
   margin: 1rem 0;
+
 }
 
 .rowContainer {
@@ -13,7 +14,7 @@
   border-radius: 0.5rem;
   min-height: 10rem;
   display: flex;
-  gap: 7.5rem;
+  gap: 8.80rem;
   background-color: #fff;
 }
 
@@ -43,3 +44,15 @@
   gap: 1rem;
 }
 
+
+@media (max-width: 1400px) {
+  .categoryRow {
+    gap: 6rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .categoryRow {
+    gap: 2rem;
+  }
+}

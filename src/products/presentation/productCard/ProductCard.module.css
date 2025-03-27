@@ -6,8 +6,8 @@
 
 .productCard {
   border: 1px solid #ccc;
-  height: 25rem;
   width: 20rem;
+  aspect-ratio: 4/5;
   border-radius: 0.5rem;
   box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.1);
   overflow: hidden;
@@ -34,7 +34,7 @@
 }
 
 .productDetails h2 {
-  margin: 0 0 0.5rem 0;
+  margin: 0;
 }
 
 .removeButton {
@@ -45,4 +45,37 @@
 
 .removeButton:hover {
   background-color: #d32f2f;
+}
+
+
+@media (max-width: 1400px) {
+  .productImage {
+    height: 12rem;
+  }
+
+  .productCard {
+    width: 15.2rem;
+  }
+
+  .productDetails h2 {
+      font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .productImage {
+    height: 11rem;
+  }
+
+  .productCard {
+    width: 12.9rem;
+  }
+
+  .productDetails h2 {
+      font-size: 1.0rem;
+  }
+
+  .productDetails p {
+      font-size: 0.9rem;
+  }
 }
