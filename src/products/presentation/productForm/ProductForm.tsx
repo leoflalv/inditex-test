@@ -1,6 +1,8 @@
 import { FormEvent, useRef } from 'react';
 
+import ImageUpload from '../../../shared/presentation/imageUpload';
 import Button from '../../../shared/presentation/ui/button';
+import { useFileUpload } from '../../../shared/usecase/useFileUpload';
 import { Product } from '../../domain/product';
 
 import styles from './ProductForm.module.css';
@@ -13,14 +15,15 @@ interface ProductFormProps {
 const ProductForm = ({ onSubmit, onCancel }: ProductFormProps) => {
   const nameRef = useRef<HTMLInputElement>(null);
   const priceRef = useRef<HTMLInputElement>(null);
-  const imageRef = useRef<HTMLInputElement>(null);
+
+  const { uploadFile, isUploading, uploadError, preview, uploadedUrl } = useFileUpload();
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     onSubmit({
       name: nameRef.current?.value || '',
       price: Number(priceRef.current?.value || 0),
-      image: imageRef.current?.value || '',
+      image: uploadedUrl || '',
     });
   };
 
@@ -46,8 +49,13 @@ const ProductForm = ({ onSubmit, onCancel }: ProductFormProps) => {
       </div>
 
       <div className={styles.formGroup}>
-        <label htmlFor="image">Image URL:</label>
-        <input type="url" id="image" name="image" ref={imageRef} defaultValue="" required />
+        <ImageUpload
+          onFileSelect={uploadFile}
+          preview={preview}
+          isUploading={isUploading}
+          error={uploadError}
+          imageUrl={uploadedUrl}
+        />
       </div>
 
       <div className={styles.buttonGroup}>
