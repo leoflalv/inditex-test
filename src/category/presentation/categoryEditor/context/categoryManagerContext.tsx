@@ -108,7 +108,10 @@ export const CategoryManagerProvider = ({
             id: product.id ?? crypto.randomUUID(),
           };
 
-          const updatedProducts = [...section.products, newProduct];
+          const updatedProducts = [
+            ...section.products.filter((p) => p.id !== TEMP_PRODUCT_ID),
+            newProduct,
+          ];
 
           const reindexedProducts = updatedProducts.map((p, idx) => ({ ...p, index: idx }));
           return { ...section, products: reindexedProducts };

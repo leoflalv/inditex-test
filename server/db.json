@@ -30,14 +30,14 @@
               "price": 45.95,
               "image": "https://picsum.photos/200/300",
               "category": "1",
-              "index": 1
+              "index": 2
             }
           ]
         },
         {
           "id": "section-2",
           "index": 1,
-          "template": "center",
+          "template": "left",
           "products": [
             {
               "id": "3",
@@ -53,13 +53,27 @@
               "price": 59.95,
               "image": "https://picsum.photos/200/300",
               "category": "1",
-              "index": 2
+              "index": 1
+            }
+          ]
+        },
+        {
+          "id": "86cb9113-f786-4e33-bf55-856fcfde14dc",
+          "index": 2,
+          "template": "center",
+          "products": [
+            {
+              "price": 1234,
+              "name": "asdf",
+              "image": "http://localhost:3001/api/uploads/1743114854061-955727964-girl_and_cat_illustration-wallpaper-3840x2160.jpg",
+              "index": 0,
+              "id": "9066b341-2574-4612-a84c-b4833ef40aa2"
             }
           ]
         },
         {
           "id": "e8a7092b-e253-4486-ba62-57e7acea68b9",
-          "index": 2,
+          "index": 3,
           "template": "right",
           "products": [
             {

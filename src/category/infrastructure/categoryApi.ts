@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 import { API_BASE_URL } from '../../core/baseApi';
+import { TEMP_PRODUCT_ID } from '../../products/domain/constants';
 import { Category } from '../domain/category';
 
 export const categoryApi = {
@@ -10,7 +11,25 @@ export const categoryApi = {
   },
 
   updateCategory: async (category: Category): Promise<Category> => {
-    const response = await axios.put(`${API_BASE_URL}/categories/${category.id}`, category);
+    const cleanSections = category.sections
+      .map((section, sectionIndex) => ({
+        ...section,
+        products: section.products
+          .filter((product) => product.id !== TEMP_PRODUCT_ID)
+          .map((product, productIndex) => ({
+            ...product,
+            index: productIndex,
+          })),
+        index: sectionIndex,
+      }))
+      .filter((section) => section.products.length > 0);
+
+    const newCategory = {
+      ...category,
+      sections: cleanSections,
+    };
+
+    const response = await axios.put(`${API_BASE_URL}/categories/${newCategory.id}`, newCategory);
     return response.data;
   },
 };
