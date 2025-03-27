@@ -3,7 +3,6 @@ import { DndContext } from '@dnd-kit/core';
 import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
 
 import { EditIcon } from '../../../assets/icons';
-import { Product } from '../../../products/domain/product';
 import Button from '../../../shared/presentation/ui/button';
 
 import AddNewRow from './components/addNewRow';
@@ -22,10 +21,6 @@ const InnerCategoryEditor = () => {
     moveRow,
     moveProductToAnotherPosition,
   });
-
-  function handleSubmit(product: Partial<Product>) {
-    return null;
-  }
 
   return (
     <div className={styles.container}>

@@ -2,6 +2,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 import CategoryEditor from './category/presentation/categoryEditor';
+import ErrorBoundary from './shared/presentation/errorBoundary';
 import Template from './shared/presentation/template';
 import { ModalProvider } from './shared/presentation/ui/modal';
 
@@ -21,7 +22,9 @@ const App = () => (
     <QueryClientProvider client={queryClient}>
       <Template>
         <ModalProvider>
-          <CategoryEditor />
+          <ErrorBoundary>
+            <CategoryEditor />
+          </ErrorBoundary>
         </ModalProvider>
       </Template>
       <ReactQueryDevtools initialIsOpen={false} />
