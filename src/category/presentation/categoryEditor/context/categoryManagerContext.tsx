@@ -6,6 +6,7 @@ import { Category, CategorySection, Template } from '../../../domain/category';
 interface CategoryManager {
   category?: Category;
   isEditMode: boolean;
+  zoom: number;
   setEditMode: (isEdit: boolean) => void;
   moveRow: (rowIndex: number, newRowIndex: number) => void;
   addProduct: (product: Partial<Product>, rowIndex: number) => void;
@@ -15,11 +16,14 @@ interface CategoryManager {
   addRow: () => void;
   removeRow: (rowIndex: number) => void;
   cancelChanges: () => void;
+  increaseZoom: () => void;
+  decreaseZoom: () => void;
 }
 
 const CategoryManagerContext = createContext<CategoryManager>({
   category: undefined,
   isEditMode: false,
+  zoom: 100,
   setEditMode: () => {},
   moveRow: () => {},
   addProduct: () => {},
@@ -29,6 +33,8 @@ const CategoryManagerContext = createContext<CategoryManager>({
   addRow: () => {},
   removeRow: () => {},
   cancelChanges: () => {},
+  increaseZoom: () => {},
+  decreaseZoom: () => {},
 });
 
 interface CategoryManagerProviderProps {
@@ -43,26 +49,36 @@ export const CategoryManagerProvider = ({
   const [category, setCategory] = useState<Category>(initialCategory);
   const [isEditMode, setIsEditMode] = useState(false);
   const [backupCategory, setBackupCategory] = useState<Category | null>(null);
+  const [zoom, setZoom] = useState(100);
 
-  const setEditMode = (isEdit: boolean) => {
+  function increaseZoom() {
+    setZoom((prev) => Math.min(prev + 10, 100));
+  }
+
+  function decreaseZoom() {
+    setZoom((prev) => Math.max(prev - 10, 40));
+  }
+
+  function setEditMode(isEdit: boolean) {
     if (isEdit && !isEditMode) {
       setBackupCategory(category);
     }
 
     if (!isEdit && isEditMode && backupCategory) {
       setCategory(backupCategory);
+      setZoom(100);
     }
 
     setIsEditMode(isEdit);
-  };
+  }
 
-  const cancelChanges = () => {
+  function cancelChanges() {
     if (backupCategory) {
       setCategory(backupCategory);
     }
     setEditMode(false);
     setBackupCategory(null);
-  };
+  }
 
   function moveRow(rowIndex: number, newRowIndex: number) {
     setCategory((prev) => {
@@ -204,6 +220,7 @@ export const CategoryManagerProvider = ({
       value={{
         category,
         isEditMode,
+        zoom,
         setEditMode,
         moveRow,
         addProduct,
@@ -213,6 +230,8 @@ export const CategoryManagerProvider = ({
         addRow,
         removeRow,
         cancelChanges,
+        increaseZoom,
+        decreaseZoom,
       }}
     >
       {children}

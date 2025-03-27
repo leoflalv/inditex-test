@@ -1,11 +1,8 @@
 import classNames from 'classnames';
-import {
-  closestCorners,
-  DndContext,
-} from '@dnd-kit/core';
+import { closestCorners, DndContext } from '@dnd-kit/core';
 import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
 
-import { EditIcon } from '../../../assets/icons';
+import { CloseIcon, EditIcon } from '../../../assets/icons';
 import Button from '../../../shared/presentation/ui/button';
 
 import AddNewRow from './components/addNewRow';
@@ -15,11 +12,12 @@ import { useCategoryManager } from './context/categoryManagerContext';
 import useDragAndDrop from './hooks/useDragAndDrop';
 
 import styles from './InnerCategoryEditor.module.css';
+import ZoomController from './components/zoomController';
 
 export const TRASH_ID = 'void';
 
 const InnerCategoryEditor = () => {
-  const { category, moveRow, moveProductToAnotherPosition, isEditMode, setEditMode } =
+  const { category, zoom, moveRow, moveProductToAnotherPosition, isEditMode, setEditMode } =
     useCategoryManager();
   const { handleDragEnd, handleDragOver, sensors } = useDragAndDrop({
     category: category!,
@@ -39,6 +37,7 @@ const InnerCategoryEditor = () => {
           <EditIcon size={30} className={isEditMode ? styles.activeEditButton : ''} />
         </Button>
       </div>
+      <ZoomController />
       <DndContext
         collisionDetection={closestCorners}
         sensors={sensors}
@@ -49,6 +48,7 @@ const InnerCategoryEditor = () => {
           className={classNames(styles.rowsContainer, {
             [styles.rowsEditMode]: isEditMode,
           })}
+          style={{ transform: `scale(${zoom / 100})`, transformOrigin: 'top center' }}
         >
           <SortableContext
             items={category?.sections.map((section) => `row-${section.id}`) || []}
