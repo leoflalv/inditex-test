@@ -10,6 +10,8 @@ import { CategorySection, Template } from '../../../../domain/category';
 import { useCategoryManager } from '../../context/categoryManagerContext';
 
 import styles from './CategoryRow.module.css';
+import TempCard from '../tempCard/TempCard';
+import { TEMP_PRODUCT_ID } from '../../../../../products/domain/constants';
 
 interface CategoryRowProps {
   section: CategorySection;
@@ -54,9 +56,13 @@ const CategoryRow = ({ section }: CategoryRowProps) => {
             items={products.map((p) => p.id)}
             strategy={horizontalListSortingStrategy}
           >
-            {products.map((product) => (
-              <SortableProductCard key={product.id} product={product} onRemove={removeProduct} />
-            ))}
+            {products.some((product) => product.id === TEMP_PRODUCT_ID) ? (
+              <TempCard key={TEMP_PRODUCT_ID} />
+            ) : (
+              products.map((product) => (
+                <SortableProductCard key={product.id} product={product} onRemove={removeProduct} />
+              ))
+            )}
           </SortableContext>
         </div>
       </div>

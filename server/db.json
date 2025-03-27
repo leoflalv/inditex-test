@@ -18,17 +18,16 @@
               "index": 0
             },
             {
+              "price": 1234,
+              "name": "asdf",
+              "image": "http://localhost:3001/api/uploads/1743112659898-600955682-layout.jpg",
+              "index": 1,
+              "id": "2e4e293f-3ddb-47db-b7c2-07ee16dc767d"
+            },
+            {
               "id": "4",
               "name": "Slim Fit Jeans",
               "price": 45.95,
-              "image": "https://picsum.photos/200/300",
-              "category": "1",
-              "index": 1
-            },
-            {
-              "id": "2",
-              "name": "Cargo Pants",
-              "price": 39.95,
               "image": "https://picsum.photos/200/300",
               "category": "1",
               "index": 1
@@ -55,6 +54,21 @@
               "image": "https://picsum.photos/200/300",
               "category": "1",
               "index": 2
+            }
+          ]
+        },
+        {
+          "id": "e8a7092b-e253-4486-ba62-57e7acea68b9",
+          "index": 2,
+          "template": "right",
+          "products": [
+            {
+              "id": "2",
+              "name": "Cargo Pants",
+              "price": 39.95,
+              "image": "https://picsum.photos/200/300",
+              "category": "1",
+              "index": 0
             }
           ]
         }

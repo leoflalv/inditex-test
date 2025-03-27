@@ -1,0 +1,17 @@
+.card {
+  width: 20rem;
+  aspect-ratio: 4/5;
+}
+
+
+@media (max-width: 1400px) {
+  .card {
+    width: 15.2rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .card {
+    width: 12.9rem;
+  }
+}

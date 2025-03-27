@@ -31,7 +31,7 @@
   padding: 1rem;
   padding-bottom: 0.1rem;
   color: var(--dark-text);
-  width: calc(100% - 2rem); /* Account for padding */
+  width: calc(100% - 2rem);
 }
 
 .productDetails h2 {

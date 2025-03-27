@@ -2,6 +2,7 @@ import { createContext, useContext, useState } from 'react';
 
 import { Product } from '../../../../products/domain/product';
 import { Category, CategorySection, Template } from '../../../domain/category';
+import { TEMP_PRODUCT_ID } from '../../../../products/domain/constants';
 
 interface CategoryManager {
   category: Category;
@@ -151,6 +152,7 @@ export const CategoryManagerProvider = ({
     targetProductId: string,
     insertAfter: boolean,
   ) {
+    // Was added to fix an issue from the library
     setTimeout(
       () =>
         setCategory((prev) => {
@@ -190,7 +192,7 @@ export const CategoryManagerProvider = ({
           }
 
           sourceSection.products = sourceProducts;
-          targetSection.products = targetProducts;
+          targetSection.products = targetProducts.filter((p) => p.id !== TEMP_PRODUCT_ID);
 
           const newSections = sections
             .map((section) => (section.id === sourceSection.id ? sourceSection : section))
@@ -208,8 +210,16 @@ export const CategoryManagerProvider = ({
       const newRow: CategorySection = {
         id: crypto.randomUUID(),
         index: 0,
-        template: 'left',
-        products: [],
+        template: 'center',
+        products: [
+          {
+            id: TEMP_PRODUCT_ID,
+            name: '',
+            price: 0,
+            image: '',
+            index: 0,
+          },
+        ],
       };
       const newSections = [...prev.sections];
       newSections.push(newRow);
