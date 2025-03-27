@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "server": "json-server --watch json-server/db.json --port 3001",
+    "server": "node server/server.js",
     "dev": "pnpm run server & vite",
     "build": "tsc -b && vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
@@ -24,7 +24,8 @@
     "@testing-library/react": "^16.2.0",
     "axios": "^1.8.4",
     "classnames": "^2.5.1",
-    "json-server": "1.0.0-beta.3",
+    "json-server": "^0.17.4",
+    "multer": "1.4.5-lts.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "vitest": "^3.0.9"
