@@ -36,17 +36,22 @@ const CategoryRow = ({ section }: CategoryRowProps) => {
     );
   }
 
+  console.log(template);
+
   return (
     <div
       className={classNames(styles.container, {
-        [styles.alignLeft]: !template || template === 'left',
-        [styles.alignCenter]: template === 'center',
-        [styles.alignRight]: template === 'right',
         [styles.editMode]: isEditMode,
       })}
     >
       <div className={styles.rowContainer}>
-        <div className={styles.categoryRow}>
+        <div
+          className={classNames(styles.categoryRow, {
+            [styles.alignLeft]: !template || template === 'left',
+            [styles.alignCenter]: template === 'center',
+            [styles.alignRight]: template === 'right',
+          })}
+        >
           <SortableContext
             items={products.map((p) => p.id)}
             strategy={horizontalListSortingStrategy}
