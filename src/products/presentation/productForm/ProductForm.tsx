@@ -16,7 +16,7 @@ const ProductForm = ({ onSubmit, onCancel }: ProductFormProps) => {
   const nameRef = useRef<HTMLInputElement>(null);
   const priceRef = useRef<HTMLInputElement>(null);
 
-  const { uploadFile, isUploading, uploadError, preview, uploadedUrl } = useFileUpload();
+  const { uploadFile, isUploading, uploadError, uploadedUrl } = useFileUpload();
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -51,7 +51,6 @@ const ProductForm = ({ onSubmit, onCancel }: ProductFormProps) => {
       <div className={styles.formGroup}>
         <ImageUpload
           onFileSelect={uploadFile}
-          preview={preview}
           isUploading={isUploading}
           error={uploadError}
           imageUrl={uploadedUrl}

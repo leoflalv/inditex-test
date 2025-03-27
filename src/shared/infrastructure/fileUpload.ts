@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { API_FILES_BASE_URL } from '../../core/baseApi';
+import { API_FILES_BASE_URL, API_URL } from '../../core/baseApi';
 
 export interface UploadResponse {
   url: string;
@@ -17,9 +17,11 @@ export const uploadFile = async (file: File): Promise<UploadResponse> => {
       },
     });
 
-    console.log(data);
+    const reponse = {
+      url: `${API_URL}${data.url}`,
+    };
 
-    return data;
+    return reponse;
   } catch (_) {
     throw new Error('Failed to upload file');
   }

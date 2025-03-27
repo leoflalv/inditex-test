@@ -23,4 +23,7 @@ dist-ssr
 *.sln
 *.sw?
 
-./server/uploads/*
+# Uploaded files
+server/uploads/*
+!server/uploads/.gitkeep
+

@@ -4,13 +4,12 @@ import styles from './ImageUpload.module.css';
 
 interface ImageUploadProps {
   onFileSelect: (file: File) => void;
-  preview?: string | null;
   isUploading?: boolean;
   error?: Error | null;
   imageUrl?: string;
 }
 
-const ImageUpload = ({ onFileSelect, preview, isUploading, error, imageUrl }: ImageUploadProps) => {
+const ImageUpload = ({ onFileSelect, isUploading, error, imageUrl }: ImageUploadProps) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -34,8 +33,8 @@ const ImageUpload = ({ onFileSelect, preview, isUploading, error, imageUrl }: Im
         className={styles.fileInput}
       />
       <div className={styles.uploadArea} onClick={handleClick}>
-        {preview || imageUrl ? (
-          <img src={preview || imageUrl} alt="Preview" className={styles.preview} />
+        {imageUrl ? (
+          <img src={imageUrl ? imageUrl : ''} alt="Preview" className={styles.preview} />
         ) : (
           <div className={styles.placeholder}>
             {isUploading ? 'Uploading...' : 'Click to upload image'}
