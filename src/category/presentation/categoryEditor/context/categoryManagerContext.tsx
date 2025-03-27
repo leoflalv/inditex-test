@@ -87,10 +87,7 @@ export const CategoryManagerProvider = ({
       const [item] = newArray.splice(rowIndex, 1);
       newArray.splice(newRowIndex, 0, item);
 
-      const newSections = newArray.map((section, index) => ({
-        ...section,
-        index,
-      }));
+      const newSections = [...newArray];
 
       return { ...prev, sections: newSections };
     });
@@ -113,8 +110,7 @@ export const CategoryManagerProvider = ({
             newProduct,
           ];
 
-          const reindexedProducts = updatedProducts.map((p, idx) => ({ ...p, index: idx }));
-          return { ...section, products: reindexedProducts };
+          return { ...section, products: updatedProducts };
         }
         return section;
       });
@@ -127,9 +123,7 @@ export const CategoryManagerProvider = ({
       const newSections = prev.sections
         .map((section) => {
           if (section.products.some((product) => product.id === productId)) {
-            const updatedProducts = section.products
-              .filter((product) => product.id !== productId)
-              .map((p, idx) => ({ ...p, index: idx }));
+            const updatedProducts = section.products.filter((product) => product.id !== productId);
 
             return updatedProducts.length < 1 ? null : { ...section, products: updatedProducts };
           }
@@ -199,8 +193,7 @@ export const CategoryManagerProvider = ({
 
           const newSections = sections
             .map((section) => (section.id === sourceSection.id ? sourceSection : section))
-            .map((section) => (section.id === targetSection.id ? targetSection : section))
-            .map((section, idx) => ({ ...section, index: idx }));
+            .map((section) => (section.id === targetSection.id ? targetSection : section));
 
           return { ...prev, sections: newSections };
         }),
@@ -226,16 +219,13 @@ export const CategoryManagerProvider = ({
       };
       const newSections = [...prev.sections];
       newSections.push(newRow);
-      const reindexedSections = newSections.map((section, idx) => ({ ...section, index: idx }));
-      return { ...prev, sections: reindexedSections };
+      return { ...prev, sections: newSections };
     });
   }
 
   function removeRow(rowId: string) {
     setCategory((prev) => {
-      const newSections = prev.sections
-        .filter((section) => section.id !== rowId)
-        .map((section, index) => ({ ...section, index }));
+      const newSections = prev.sections.filter((section) => section.id !== rowId);
       return { ...prev, sections: newSections };
     });
   }

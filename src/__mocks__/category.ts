@@ -1,54 +1,43 @@
-import { Category } from '../category/domain/category';
+import { Category, Template } from '../category/domain/category';
 
 export const CATEGORY: Category = {
-  id: 'cat-1',
-  name: 'Electronics',
+  id: '1',
+  name: 'Test Category',
   sections: [
     {
-      id: crypto.randomUUID(),
-      index: 1,
+      id: 'section1',
+      index: 0,
+      template: 'center' as Template,
       products: [
         {
-          category: 'Electronics',
-          id: 'prod-1',
-          image: 'https://picsum.photos/200/300',
+          id: 'product1',
+          name: 'Product 1',
+          price: 10,
+          image: 'image1.jpg',
+          index: 0,
+        },
+        {
+          id: 'product2',
+          name: 'Product 2',
+          price: 20,
+          image: 'image2.jpg',
           index: 1,
-          name: 'Smartphone',
-          price: 699.99,
-        },
-        {
-          category: 'Electronics',
-          id: 'prod-2',
-          image: 'https://picsum.photos/200/300',
-          index: 2,
-          name: 'Laptop',
-          price: 999.99,
-        },
-        {
-          category: 'Electronics',
-          id: 'prod-3',
-          image: 'https://picsum.photos/200/300',
-          index: 3,
-          name: 'Headphones',
-          price: 199.99,
         },
       ],
-      template: 'center',
     },
     {
-      id: crypto.randomUUID(),
-      index: 2,
+      id: 'section2',
+      index: 1,
+      template: 'left' as Template,
       products: [
         {
-          category: 'Electronics',
-          id: 'prod-4',
-          image: 'https://picsum.photos/200/300',
-          index: 1,
-          name: 'Tablet',
-          price: 399.99,
+          id: 'product3',
+          name: 'Product 3',
+          price: 30,
+          image: 'image3.jpg',
+          index: 0,
         },
       ],
-      template: 'left',
     },
   ],
 };
