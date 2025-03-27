@@ -1,8 +1,8 @@
 import { createContext, useContext, useState } from 'react';
 
+import { TEMP_PRODUCT_ID } from '../../../../products/domain/constants';
 import { Product } from '../../../../products/domain/product';
 import { Category, CategorySection, Template } from '../../../domain/category';
-import { TEMP_PRODUCT_ID } from '../../../../products/domain/constants';
 
 interface CategoryManager {
   category: Category;

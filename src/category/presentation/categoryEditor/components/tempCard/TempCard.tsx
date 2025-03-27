@@ -1,5 +1,6 @@
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
+
 import { TEMP_PRODUCT_ID } from '../../../../../products/domain/constants';
 
 const TempCard = () => {

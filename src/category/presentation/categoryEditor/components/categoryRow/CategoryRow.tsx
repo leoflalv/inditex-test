@@ -1,24 +1,26 @@
 import classNames from 'classnames';
 import { horizontalListSortingStrategy, SortableContext } from '@dnd-kit/sortable';
 
+import { TEMP_PRODUCT_ID } from '../../../../../products/domain/constants';
 import ProductForm from '../../../../../products/presentation/productForm';
 import SortableProductCard from '../../../../../products/presentation/sortableProductCard';
 import AddButton from '../../../../../shared/presentation/addButton';
+import RemoveButton from '../../../../../shared/presentation/removeButton/RemoveButton';
 import { useModal } from '../../../../../shared/presentation/ui/modal';
 import Select from '../../../../../shared/presentation/ui/select';
 import { CategorySection, Template } from '../../../../domain/category';
 import { useCategoryManager } from '../../context/categoryManagerContext';
+import TempCard from '../tempCard';
 
 import styles from './CategoryRow.module.css';
-import TempCard from '../tempCard/TempCard';
-import { TEMP_PRODUCT_ID } from '../../../../../products/domain/constants';
 
 interface CategoryRowProps {
   section: CategorySection;
 }
 
 const CategoryRow = ({ section }: CategoryRowProps) => {
-  const { isEditMode, removeProduct, addProduct, modifyRowTemplate } = useCategoryManager();
+  const { isEditMode, removeProduct, addProduct, modifyRowTemplate, removeRow } =
+    useCategoryManager();
   const { template, products } = section;
 
   const { openModal, closeModal } = useModal();
@@ -77,7 +79,8 @@ const CategoryRow = ({ section }: CategoryRowProps) => {
             ]}
             onChange={(template) => modifyRowTemplate(section.index, template as Template)}
           />
-          <AddButton onClick={handleAddProduct} disabled={fullSection} />
+          <RemoveButton onClick={() => removeRow(section.id)} classes={styles.removeButton} />
+          <AddButton onClick={handleAddProduct} disabled={fullSection} classes={styles.addButton} />
         </div>
       )}
     </div>
