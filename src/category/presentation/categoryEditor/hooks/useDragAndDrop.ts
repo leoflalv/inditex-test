@@ -24,8 +24,8 @@ function useDragAndDrop({ category, moveRow, moveProductToAnotherPosition }: Use
     }),
     useSensor(TouchSensor, {
       activationConstraint: {
-        delay: 300,
-        tolerance: 8,
+        delay: 100,
+        tolerance: 5,
       },
     }),
   );
