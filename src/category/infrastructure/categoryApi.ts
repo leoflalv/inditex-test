@@ -3,11 +3,22 @@ import axios from 'axios';
 import { API_BASE_URL } from '../../core/baseApi';
 import { TEMP_PRODUCT_ID } from '../../products/domain/constants';
 import { Category } from '../domain/category';
+import { GetCategorySchema, mapGetCategoryDtoToCategory } from './getCategoryDto';
 
 export const categoryApi = {
   getCategory: async (id: string): Promise<Category> => {
     const response = await axios.get(`${API_BASE_URL}/categories/${id}`);
-    return response.data;
+
+    const categoryDto = GetCategorySchema.safeParse(response.data);
+
+    if (!categoryDto.success) {
+      console.error(categoryDto.error);
+      throw new Error('Invalid category');
+    }
+
+    const category = mapGetCategoryDtoToCategory(categoryDto.data);
+
+    return category;
   },
 
   updateCategory: async (category: Category): Promise<Category> => {

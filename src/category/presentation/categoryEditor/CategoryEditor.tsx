@@ -3,8 +3,13 @@ import InnerCategoryEditor from './InnerCategoryEditor';
 
 import { CategoryManagerProvider } from './context/categoryManagerContext';
 
-const CategoryEditor = () => {
-  const { data: category, isLoading } = useGetCategory('1');
+interface CategoryEditorProps {
+  categoryId: string;
+}
+
+// The component is gonna receive the id of the category we want to edit
+const CategoryEditor = ({ categoryId }: CategoryEditorProps) => {
+  const { data: category, isLoading } = useGetCategory(categoryId);
 
   if (isLoading || !category) return <div>Loading...</div>;
 

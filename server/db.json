@@ -1,87 +1,82 @@
 {
   "categories": [
     {
-      "id": "1",
+      "id": "category-1",
       "name": "New Collection",
       "sections": [
         {
-          "id": "section-1",
+          "id": "3eda4d07-7da4-4a14-81cd-aeaa44d03cc5",
           "index": 0,
           "template": "left",
           "products": [
             {
-              "id": "1",
-              "name": "Oversized Denim Jacket",
-              "price": 49.95,
-              "image": "https://picsum.photos/200/300",
-              "category": "1",
-              "index": 0
-            },
-            {
-              "price": 1234,
-              "name": "asdf",
-              "image": "http://localhost:3001/api/uploads/1743112659898-600955682-layout.jpg",
-              "index": 1,
-              "id": "2e4e293f-3ddb-47db-b7c2-07ee16dc767d"
-            },
-            {
-              "id": "4",
-              "name": "Slim Fit Jeans",
-              "price": 45.95,
-              "image": "https://picsum.photos/200/300",
-              "category": "1",
-              "index": 2
-            }
-          ]
-        },
-        {
-          "id": "section-2",
-          "index": 1,
-          "template": "left",
-          "products": [
-            {
-              "id": "3",
+              "id": "11e4e93f-5ddb-47db-b7c2-07de1caa1bd2",
               "name": "Basic T-Shirt",
               "price": 15.95,
               "image": "https://picsum.photos/200/300",
-              "category": "1",
               "index": 0
             },
             {
-              "id": "5",
+              "id": "ba34e93f-5ddb-47db-b7c2-07de1caa1bd2",
               "name": "Leather Sneakers",
               "price": 59.95,
               "image": "https://picsum.photos/200/300",
-              "category": "1",
               "index": 1
             }
           ]
         },
         {
-          "id": "86cb9113-f786-4e33-bf55-856fcfde14dc",
-          "index": 2,
+          "id": "235ecaaa-0f67-4bd8-9474-d2305ce78497",
+          "index": 1,
           "template": "center",
           "products": [
             {
-              "price": 1234,
+              "id": "9066b341-2574-4612-a84c-b4833ef40aa2",
               "name": "asdf",
+              "price": 1234,
               "image": "http://localhost:3001/api/uploads/1743114854061-955727964-girl_and_cat_illustration-wallpaper-3840x2160.jpg",
-              "index": 0,
-              "id": "9066b341-2574-4612-a84c-b4833ef40aa2"
+              "index": 0
             }
           ]
         },
         {
-          "id": "e8a7092b-e253-4486-ba62-57e7acea68b9",
+          "id": "a0391a31-5989-44a8-aa80-572b3aec7432",
+          "index": 2,
+          "template": "left",
+          "products": [
+            {
+              "id": "bb13d93f-3ddb-47db-b7c2-07ea16dc767d",
+              "name": "Oversized Denim Jacket",
+              "price": 49.95,
+              "image": "https://picsum.photos/200/300",
+              "index": 0
+            },
+            {
+              "id": "2e4e293f-3ddb-47db-b7c2-07ee16dc767d",
+              "name": "asdf",
+              "price": 1234,
+              "image": "http://localhost:3001/api/uploads/1743112659898-600955682-layout.jpg",
+              "index": 1
+            },
+            {
+              "id": "42e4e93f-3ddb-47db-b7c2-07ee1eaa1bb2",
+              "name": "Slim Fit Jeans",
+              "price": 45.95,
+              "image": "https://picsum.photos/200/300",
+              "index": 2
+            }
+          ]
+        },
+        {
+          "id": "c331207b-47d5-4998-830c-17db9cc45762",
           "index": 3,
           "template": "right",
           "products": [
             {
-              "id": "2",
+              "id": "df62b341-2574-4612-a84c-b4833ef40ab3",
               "name": "Cargo Pants",
               "price": 39.95,
               "image": "https://picsum.photos/200/300",
-              "category": "1",
               "index": 0
             }
           ]

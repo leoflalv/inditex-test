@@ -25,7 +25,7 @@ const App = () => (
         <Template>
           <ModalProvider>
             <ErrorBoundary>
-              <CategoryEditor />
+              <CategoryEditor categoryId="category-1" />
             </ErrorBoundary>
           </ModalProvider>
         </Template>
