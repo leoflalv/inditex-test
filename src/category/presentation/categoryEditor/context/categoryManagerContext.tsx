@@ -139,52 +139,56 @@ export const CategoryManagerProvider = ({
   }
 
   function moveProductToAnotherPosition(currentProductId: string, targetProductId: string) {
-    setCategory((prev) => {
-      const sections = [...prev.sections];
+    setTimeout(
+      () =>
+        setCategory((prev) => {
+          const sections = [...prev.sections];
 
-      const sourceRowId = prev.sections.find((section) =>
-        section.products.some((p) => p.id === currentProductId),
-      )?.id;
-      const targetRowId = prev.sections.find((section) =>
-        section.products.some((p) => p.id === targetProductId),
-      )?.id;
+          const sourceRowId = prev.sections.find((section) =>
+            section.products.some((p) => p.id === currentProductId),
+          )?.id;
+          const targetRowId = prev.sections.find((section) =>
+            section.products.some((p) => p.id === targetProductId),
+          )?.id;
 
-      const sourceSection = sections.find((section) => section.id === sourceRowId);
-      const targetSection = sections.find((section) => section.id === targetRowId);
+          const sourceSection = sections.find((section) => section.id === sourceRowId);
+          const targetSection = sections.find((section) => section.id === targetRowId);
 
-      if (!sourceSection || !targetSection) return prev;
+          if (!sourceSection || !targetSection) return prev;
 
-      const sourceProducts = [...(sourceSection?.products ?? [])];
-      const targetProducts = [...(targetSection?.products ?? [])];
+          const sourceProducts = [...(sourceSection?.products ?? [])];
+          const targetProducts = [...(targetSection?.products ?? [])];
 
-      const sourceProductIndex = sourceProducts.findIndex((p) => p.id === currentProductId);
-      const targetProductIndex = targetProducts.findIndex((p) => p.id === targetProductId);
+          const sourceProductIndex = sourceProducts.findIndex((p) => p.id === currentProductId);
+          const targetProductIndex = targetProducts.findIndex((p) => p.id === targetProductId);
 
-      if (sourceProductIndex === -1 || targetProductIndex === -1) return prev;
+          if (sourceProductIndex === -1 || targetProductIndex === -1) return prev;
 
-      if (sourceSection.id === targetSection.id) {
-        // Moving within the same section
-        const [movedProduct] = targetProducts.splice(sourceProductIndex, 1);
-        targetProducts?.splice(targetProductIndex, 0, movedProduct);
-      } else {
-        // Moving to a different section
-        const [movedProduct] = sourceProducts.splice(sourceProductIndex, 1);
-        targetProducts.splice(targetProductIndex, 0, {
-          ...movedProduct,
-          index: targetProductIndex,
-        });
-      }
+          if (sourceSection.id === targetSection.id) {
+            // Moving within the same section
+            const [movedProduct] = targetProducts.splice(sourceProductIndex, 1);
+            targetProducts?.splice(targetProductIndex, 0, movedProduct);
+          } else {
+            // Moving to a different section
+            const [movedProduct] = sourceProducts.splice(sourceProductIndex, 1);
+            targetProducts.splice(targetProductIndex, 0, {
+              ...movedProduct,
+              index: targetProductIndex,
+            });
+          }
 
-      sourceSection.products = sourceProducts;
-      targetSection.products = targetProducts;
+          sourceSection.products = sourceProducts;
+          targetSection.products = targetProducts;
 
-      const newSections = sections
-        .map((section) => (section.id === sourceSection.id ? sourceSection : section))
-        .map((section) => (section.id === targetSection.id ? targetSection : section))
-        .map((section, idx) => ({ ...section, index: idx }));
+          const newSections = sections
+            .map((section) => (section.id === sourceSection.id ? sourceSection : section))
+            .map((section) => (section.id === targetSection.id ? targetSection : section))
+            .map((section, idx) => ({ ...section, index: idx }));
 
-      return { ...prev, sections: newSections };
-    });
+          return { ...prev, sections: newSections };
+        }),
+      0,
+    );
   }
 
   function addRow() {
