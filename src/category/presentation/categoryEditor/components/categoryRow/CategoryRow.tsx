@@ -5,17 +5,18 @@ import ProductForm from '../../../../../products/presentation/productForm';
 import SortableProductCard from '../../../../../products/presentation/sortableProductCard';
 import AddButton from '../../../../../shared/presentation/addButton';
 import { useModal } from '../../../../../shared/presentation/ui/modal';
-import { CategorySection } from '../../../../domain/category';
+import { CategorySection, Template } from '../../../../domain/category';
 import { useCategoryManager } from '../../context/categoryManagerContext';
 
 import styles from './CategoryRow.module.css';
+import Select from '../../../../../shared/presentation/ui/select';
 
 interface CategoryRowProps {
   section: CategorySection;
 }
 
 const CategoryRow = ({ section }: CategoryRowProps) => {
-  const { isEditMode, removeProduct, addProduct } = useCategoryManager();
+  const { isEditMode, removeProduct, addProduct, modifyRowTemplate } = useCategoryManager();
   const { template, products } = section;
 
   const { openModal, closeModal } = useModal();
@@ -58,6 +59,15 @@ const CategoryRow = ({ section }: CategoryRowProps) => {
       </div>
       {isEditMode && (
         <div className={styles.buttonContainer}>
+          <Select
+            value={template}
+            items={[
+              { value: 'left', label: 'Left' },
+              { value: 'center', label: 'Center' },
+              { value: 'right', label: 'Right' },
+            ]}
+            onChange={(template) => modifyRowTemplate(section.index, template as Template)}
+          />
           <AddButton onClick={handleAddProduct} disabled={fullSection} />
         </div>
       )}
