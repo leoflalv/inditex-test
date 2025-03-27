@@ -1,5 +1,8 @@
 import classNames from 'classnames';
-import { DndContext } from '@dnd-kit/core';
+import {
+  closestCorners,
+  DndContext,
+} from '@dnd-kit/core';
 import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
 
 import { EditIcon } from '../../../assets/icons';
@@ -12,6 +15,8 @@ import { useCategoryManager } from './context/categoryManagerContext';
 import useDragAndDrop from './hooks/useDragAndDrop';
 
 import styles from './InnerCategoryEditor.module.css';
+
+export const TRASH_ID = 'void';
 
 const InnerCategoryEditor = () => {
   const { category, moveRow, moveProductToAnotherPosition, isEditMode, setEditMode } =
@@ -34,7 +39,12 @@ const InnerCategoryEditor = () => {
           <EditIcon size={30} className={isEditMode ? styles.activeEditButton : ''} />
         </Button>
       </div>
-      <DndContext sensors={sensors} onDragEnd={handleDragEnd} onDragOver={handleDragOver}>
+      <DndContext
+        collisionDetection={closestCorners}
+        sensors={sensors}
+        onDragEnd={handleDragEnd}
+        onDragOver={handleDragOver}
+      >
         <div
           className={classNames(styles.rowsContainer, {
             [styles.rowsEditMode]: isEditMode,

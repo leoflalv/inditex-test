@@ -157,7 +157,7 @@ export const CategoryManagerProvider = ({
       } else {
         // Moving to a different section
         const [movedProduct] = sourceProducts.splice(sourceProductIndex, 1);
-        targetSection.products.splice(targetProductIndex, 0, {
+        targetProducts.splice(targetProductIndex, 0, {
           ...movedProduct,
           index: targetProductIndex,
         });
