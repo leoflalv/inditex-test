@@ -12,9 +12,13 @@ interface CategoryManager {
   addProduct: (product: Partial<Product>, rowIndex: number) => void;
   removeProduct: (productId: string) => void;
   modifyRowTemplate: (rowIndex: number, template: Template) => void;
-  moveProductToAnotherPosition: (currentProductId: string, targetProductId: string) => void;
+  moveProductToAnotherPosition: (
+    currentProductId: string,
+    targetProductId: string,
+    insertAfter: boolean,
+  ) => void;
   addRow: () => void;
-  removeRow: (rowIndex: number) => void;
+  removeRow: (rowId: string) => void;
   cancelChanges: () => void;
   increaseZoom: () => void;
   decreaseZoom: () => void;
@@ -116,15 +120,19 @@ export const CategoryManagerProvider = ({
 
   function removeProduct(productId: string) {
     setCategory((prev) => {
-      const newSections = prev.sections.map((section) => {
-        if (section.products.some((product) => product.id === productId)) {
-          const updatedProducts = section.products
-            .filter((product) => product.id !== productId)
-            .map((p, idx) => ({ ...p, index: idx }));
-          return { ...section, products: updatedProducts };
-        }
-        return section;
-      });
+      const newSections = prev.sections
+        .map((section) => {
+          if (section.products.some((product) => product.id === productId)) {
+            const updatedProducts = section.products
+              .filter((product) => product.id !== productId)
+              .map((p, idx) => ({ ...p, index: idx }));
+
+            return updatedProducts.length < 1 ? null : { ...section, products: updatedProducts };
+          }
+          return section;
+        })
+        .filter((section) => section !== null);
+
       return { ...prev, sections: newSections };
     });
   }
@@ -138,7 +146,11 @@ export const CategoryManagerProvider = ({
     });
   }
 
-  function moveProductToAnotherPosition(currentProductId: string, targetProductId: string) {
+  function moveProductToAnotherPosition(
+    currentProductId: string,
+    targetProductId: string,
+    insertAfter: boolean,
+  ) {
     setTimeout(
       () =>
         setCategory((prev) => {
@@ -171,7 +183,7 @@ export const CategoryManagerProvider = ({
           } else {
             // Moving to a different section
             const [movedProduct] = sourceProducts.splice(sourceProductIndex, 1);
-            targetProducts.splice(targetProductIndex, 0, {
+            targetProducts.splice(insertAfter ? targetProductIndex + 1 : targetProductIndex, 0, {
               ...movedProduct,
               index: targetProductIndex,
             });
@@ -206,12 +218,12 @@ export const CategoryManagerProvider = ({
     });
   }
 
-  function removeRow(rowIndex: number) {
+  function removeRow(rowId: string) {
     setCategory((prev) => {
-      const newSections = [...prev.sections];
-      newSections.splice(rowIndex, 1);
-      const reindexedSections = newSections.map((section, idx) => ({ ...section, index: idx }));
-      return { ...prev, sections: reindexedSections };
+      const newSections = prev.sections
+        .filter((section) => section.id !== rowId)
+        .map((section, index) => ({ ...section, index }));
+      return { ...prev, sections: newSections };
     });
   }
 

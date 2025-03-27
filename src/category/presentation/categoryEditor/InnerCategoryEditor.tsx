@@ -24,12 +24,14 @@ const InnerCategoryEditor = () => {
     isEditMode,
     setEditMode,
     cancelChanges,
+    removeRow,
   } = useCategoryManager();
 
   const { handleDragEnd, handleDragOver, sensors } = useDragAndDrop({
     category: category!,
     moveRow,
     moveProductToAnotherPosition,
+    removeSection: removeRow,
   });
 
   const { mutate: updateCategory, isPending } = useUpdateCategory();

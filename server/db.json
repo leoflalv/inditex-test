@@ -7,7 +7,7 @@
         {
           "id": "section-1",
           "index": 0,
-          "template": "center",
+          "template": "left",
           "products": [
             {
               "id": "1",
@@ -16,6 +16,14 @@
               "image": "https://picsum.photos/200/300",
               "category": "1",
               "index": 0
+            },
+            {
+              "id": "4",
+              "name": "Slim Fit Jeans",
+              "price": 45.95,
+              "image": "https://picsum.photos/200/300",
+              "category": "1",
+              "index": 1
             },
             {
               "id": "2",
@@ -39,14 +47,6 @@
               "image": "https://picsum.photos/200/300",
               "category": "1",
               "index": 0
-            },
-            {
-              "id": "4",
-              "name": "Slim Fit Jeans",
-              "price": 45.95,
-              "image": "https://picsum.photos/200/300",
-              "category": "1",
-              "index": 1
             },
             {
               "id": "5",

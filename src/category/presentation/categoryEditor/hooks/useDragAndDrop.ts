@@ -12,10 +12,20 @@ import { Category } from '../../../domain/category';
 interface UseDragAndDropProps {
   category: Category;
   moveRow: (oldIndex: number, newIndex: number) => void;
-  moveProductToAnotherPosition: (productId: string, overProductId: string) => void;
+  moveProductToAnotherPosition: (
+    productId: string,
+    overProductId: string,
+    insertAfter: boolean,
+  ) => void;
+  removeSection: (sectionId: string) => void;
 }
 
-function useDragAndDrop({ category, moveRow, moveProductToAnotherPosition }: UseDragAndDropProps) {
+function useDragAndDrop({
+  category,
+  moveRow,
+  moveProductToAnotherPosition,
+  removeSection,
+}: UseDragAndDropProps) {
   const sensors = useSensors(
     useSensor(MouseSensor, {
       activationConstraint: {
@@ -32,6 +42,12 @@ function useDragAndDrop({ category, moveRow, moveProductToAnotherPosition }: Use
 
   const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
+
+    for (const section of category.sections) {
+      if (section.products.length < 1) {
+        removeSection(section.id);
+      }
+    }
 
     if (!over) return;
 
@@ -71,6 +87,9 @@ function useDragAndDrop({ category, moveRow, moveProductToAnotherPosition }: Use
       );
 
       if (activeSection && overSection) {
+        const activeX = active.rect.current.translated?.left ?? 0;
+        const overX = over.rect.left;
+
         const overSectionProducts = overSection.products.length;
 
         if (activeSection.id !== overSection.id && overSectionProducts >= 3) {
@@ -84,7 +103,7 @@ function useDragAndDrop({ category, moveRow, moveProductToAnotherPosition }: Use
         const overProduct = overSection.products.find((product) => product.id === overProductId);
 
         if (activeProduct && overProduct) {
-          moveProductToAnotherPosition(activeProduct.id, overProduct.id);
+          moveProductToAnotherPosition(activeProduct.id, overProduct.id, overX < activeX);
         }
       }
     }
