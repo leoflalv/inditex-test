@@ -15,7 +15,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 5rem;
-  justify-content: center; /* centers grid tracks if there are fewer than 3 items */
+  justify-content: center;
   background-color: #fff;
 }
 
@@ -35,7 +35,6 @@
 .alignRight {
   justify-content: flex-end;
 }
-
 
 .buttonContainer {
   display: flex;

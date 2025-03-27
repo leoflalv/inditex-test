@@ -2,17 +2,17 @@ import classNames from 'classnames';
 import { closestCorners, DndContext } from '@dnd-kit/core';
 import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
 
-import { CloseIcon, EditIcon } from '../../../assets/icons';
+import { EditIcon } from '../../../assets/icons';
 import Button from '../../../shared/presentation/ui/button';
 
 import AddNewRow from './components/addNewRow';
 import EditModeFooter from './components/editModeFooter';
 import SortableRow from './components/sortableRow';
+import ZoomController from './components/zoomController';
 import { useCategoryManager } from './context/categoryManagerContext';
 import useDragAndDrop from './hooks/useDragAndDrop';
 
 import styles from './InnerCategoryEditor.module.css';
-import ZoomController from './components/zoomController';
 
 export const TRASH_ID = 'void';
 

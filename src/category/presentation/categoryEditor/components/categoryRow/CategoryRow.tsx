@@ -5,11 +5,11 @@ import ProductForm from '../../../../../products/presentation/productForm';
 import SortableProductCard from '../../../../../products/presentation/sortableProductCard';
 import AddButton from '../../../../../shared/presentation/addButton';
 import { useModal } from '../../../../../shared/presentation/ui/modal';
+import Select from '../../../../../shared/presentation/ui/select';
 import { CategorySection, Template } from '../../../../domain/category';
 import { useCategoryManager } from '../../context/categoryManagerContext';
 
 import styles from './CategoryRow.module.css';
-import Select from '../../../../../shared/presentation/ui/select';
 
 interface CategoryRowProps {
   section: CategorySection;
