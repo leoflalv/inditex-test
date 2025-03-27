@@ -4,6 +4,7 @@ import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
 
 import { EditIcon } from '../../../assets/icons';
 import Button from '../../../shared/presentation/ui/button';
+import { useUpdateCategory } from '../../usecase/useUpdateCategory';
 
 import AddNewRow from './components/addNewRow';
 import EditModeFooter from './components/editModeFooter';
@@ -14,16 +15,29 @@ import useDragAndDrop from './hooks/useDragAndDrop';
 
 import styles from './InnerCategoryEditor.module.css';
 
-export const TRASH_ID = 'void';
-
 const InnerCategoryEditor = () => {
-  const { category, zoom, moveRow, moveProductToAnotherPosition, isEditMode, setEditMode } =
-    useCategoryManager();
+  const {
+    category,
+    zoom,
+    moveRow,
+    moveProductToAnotherPosition,
+    isEditMode,
+    setEditMode,
+    cancelChanges,
+  } = useCategoryManager();
+
   const { handleDragEnd, handleDragOver, sensors } = useDragAndDrop({
     category: category!,
     moveRow,
     moveProductToAnotherPosition,
   });
+
+  const { mutate: updateCategory, isPending } = useUpdateCategory();
+
+  function handleSubmit() {
+    updateCategory(category);
+    setEditMode(false);
+  }
 
   return (
     <div className={styles.container}>
@@ -31,7 +45,7 @@ const InnerCategoryEditor = () => {
         <h1 className={classNames('header1', styles.header)}>{category?.name}</h1>
         <Button
           data-testid="edit-mode-toggle"
-          onClick={() => setEditMode(!isEditMode)}
+          onClick={isEditMode ? cancelChanges : () => setEditMode(true)}
           variant="text"
         >
           <EditIcon size={30} className={isEditMode ? styles.activeEditButton : ''} />
@@ -64,7 +78,9 @@ const InnerCategoryEditor = () => {
         </div>
       </DndContext>
 
-      {isEditMode && <EditModeFooter />}
+      {isEditMode && (
+        <EditModeFooter onSubmit={handleSubmit} onCancel={cancelChanges} isLoading={isPending} />
+      )}
     </div>
   );
 };

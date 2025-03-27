@@ -26,6 +26,7 @@
 
 .button-outlined {
   background-color: transparent;
+  border-width: 1px;
 }
 
 .button-text {

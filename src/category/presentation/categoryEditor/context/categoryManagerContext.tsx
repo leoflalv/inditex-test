@@ -4,7 +4,7 @@ import { Product } from '../../../../products/domain/product';
 import { Category, CategorySection, Template } from '../../../domain/category';
 
 interface CategoryManager {
-  category?: Category;
+  category: Category;
   isEditMode: boolean;
   zoom: number;
   setEditMode: (isEdit: boolean) => void;
@@ -21,7 +21,7 @@ interface CategoryManager {
 }
 
 const CategoryManagerContext = createContext<CategoryManager>({
-  category: undefined,
+  category: { id: crypto.randomUUID(), name: 'New Category', sections: [] },
   isEditMode: false,
   zoom: 100,
   setEditMode: () => {},
@@ -64,17 +64,13 @@ export const CategoryManagerProvider = ({
       setBackupCategory(category);
     }
 
-    if (!isEdit && isEditMode && backupCategory) {
-      setCategory(backupCategory);
-      setZoom(100);
-    }
-
     setIsEditMode(isEdit);
   }
 
   function cancelChanges() {
     if (backupCategory) {
       setCategory(backupCategory);
+      setZoom(100);
     }
     setEditMode(false);
     setBackupCategory(null);
