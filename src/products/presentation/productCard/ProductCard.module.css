@@ -31,10 +31,20 @@
   padding: 1rem;
   padding-bottom: 0.1rem;
   color: var(--dark-text);
+  width: calc(100% - 2rem); /* Account for padding */
 }
 
 .productDetails h2 {
   margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.productDetails p {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .removeButton {

@@ -7,7 +7,7 @@
         {
           "id": "section-1",
           "index": 0,
-          "template": "right",
+          "template": "center",
           "products": [
             {
               "id": "1",
@@ -18,7 +18,7 @@
               "index": 0
             },
             {
-              "id": "2", 
+              "id": "2",
               "name": "Cargo Pants",
               "price": 39.95,
               "image": "https://picsum.photos/200/300",
