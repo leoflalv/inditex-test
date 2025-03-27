@@ -61,7 +61,7 @@ export const CategoryManagerProvider = ({
 
   function setEditMode(isEdit: boolean) {
     if (isEdit && !isEditMode) {
-      setBackupCategory(category);
+      setBackupCategory(JSON.parse(JSON.stringify(category)));
     }
 
     setIsEditMode(isEdit);
@@ -69,7 +69,7 @@ export const CategoryManagerProvider = ({
 
   function cancelChanges() {
     if (backupCategory) {
-      setCategory(backupCategory);
+      setCategory(JSON.parse(JSON.stringify(backupCategory)));
       setZoom(100);
     }
     setEditMode(false);
