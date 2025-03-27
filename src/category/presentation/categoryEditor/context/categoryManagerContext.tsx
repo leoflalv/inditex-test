@@ -8,7 +8,7 @@ interface CategoryManager {
   isEditMode: boolean;
   setEditMode: (isEdit: boolean) => void;
   moveRow: (rowIndex: number, newRowIndex: number) => void;
-  addProduct: (product: Product, rowIndex: number, columnIndex?: number) => void;
+  addProduct: (product: Partial<Product>, rowIndex: number) => void;
   removeProduct: (productId: string) => void;
   modifyRowTemplate: (rowIndex: number, template: Template) => void;
   moveProductToAnotherPosition: (currentProductId: string, targetProductId: string) => void;
@@ -79,18 +79,19 @@ export const CategoryManagerProvider = ({
     });
   }
 
-  function addProduct(product: Product, rowIndex: number, columnIndex = 0) {
+  function addProduct(product: Partial<Product>, rowIndex: number) {
     setCategory((prev) => {
       const newSections = prev.sections.map((section) => {
         if (section.index === rowIndex) {
           const newProduct = {
-            ...product,
-            index: columnIndex,
+            price: product.price ?? 0,
+            name: product.name ?? '',
+            image: product.image ?? '',
+            index: section.products.length,
             id: product.id ?? crypto.randomUUID(),
           };
 
-          const updatedProducts = [...section.products];
-          updatedProducts.splice(columnIndex, 0, newProduct);
+          const updatedProducts = [...section.products, newProduct];
 
           const reindexedProducts = updatedProducts.map((p, idx) => ({ ...p, index: idx }));
           return { ...section, products: reindexedProducts };

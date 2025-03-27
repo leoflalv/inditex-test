@@ -15,7 +15,7 @@ interface CategoryRowProps {
 }
 
 const CategoryRow = ({ section }: CategoryRowProps) => {
-  const { isEditMode, removeProduct } = useCategoryManager();
+  const { isEditMode, removeProduct, addProduct } = useCategoryManager();
   const { template, products } = section;
 
   const { openModal, closeModal } = useModal();
@@ -23,7 +23,16 @@ const CategoryRow = ({ section }: CategoryRowProps) => {
   const fullSection = products.length === 3;
 
   function handleAddProduct() {
-    openModal('Add New Product', <ProductForm onSubmit={() => {}} onCancel={closeModal} />);
+    openModal(
+      'Add New Product',
+      <ProductForm
+        onSubmit={(newProduct) => {
+          addProduct(newProduct, section.index);
+          closeModal();
+        }}
+        onCancel={closeModal}
+      />,
+    );
   }
 
   return (

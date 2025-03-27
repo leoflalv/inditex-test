@@ -21,6 +21,7 @@ const ProductForm = ({ onSubmit, onCancel }: ProductFormProps) => {
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     onSubmit({
+      id: crypto.randomUUID(),
       name: nameRef.current?.value || '',
       price: Number(priceRef.current?.value || 0),
       image: uploadedUrl || '',
@@ -61,7 +62,9 @@ const ProductForm = ({ onSubmit, onCancel }: ProductFormProps) => {
         <Button variant="outlined" onClick={onCancel}>
           Cancel
         </Button>
-        <Button type="submit">Create Product</Button>
+        <Button type="submit" disabled={isUploading}>
+          Create Product
+        </Button>
       </div>
     </form>
   );
