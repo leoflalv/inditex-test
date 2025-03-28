@@ -5,12 +5,13 @@
 }
 
 .productCard {
+  position: relative;
   border: 1px solid #ccc;
   width: 20rem;
   aspect-ratio: 4/5;
   border-radius: 0.5rem;
   box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.1);
-  overflow: hidden;
+  overflow: visible;
   background-color: #fff;
 }
 
@@ -26,7 +27,6 @@
 }
 
 .productDetails {
-  position: absolute;
   bottom: 0;
   padding: 1rem;
   padding-bottom: 0.1rem;

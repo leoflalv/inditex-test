@@ -61,6 +61,7 @@ const InnerCategoryEditor = () => {
         onDragOver={handleDragOver}
       >
         <div
+          data-testid="rows-container"
           className={classNames(styles.rowsContainer, {
             [styles.rowsEditMode]: isEditMode,
           })}

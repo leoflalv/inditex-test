@@ -15,11 +15,23 @@ const ZoomController = () => {
 
   return (
     <div className={styles.zoomControls}>
-      <Button onClick={increaseZoom} title="Zoom in" size="small" disabled={disableIncreaseZoom}>
+      <Button
+        data-testid="zoom-in-button"
+        onClick={increaseZoom}
+        title="Zoom in"
+        size="small"
+        disabled={disableIncreaseZoom}
+      >
         +
       </Button>
       <span className={styles.zoomValue}>{zoom}%</span>
-      <Button size="small" onClick={decreaseZoom} title="Zoom out" disabled={disableDecreaseZoom}>
+      <Button
+        data-testid="zoom-out-button"
+        size="small"
+        onClick={decreaseZoom}
+        title="Zoom out"
+        disabled={disableDecreaseZoom}
+      >
         −
       </Button>
     </div>

@@ -13,7 +13,7 @@ const ProductCard = ({ product, onRemove = () => {} }: ProductCardProps) => {
   const { isEditMode } = useCategoryManager();
 
   return (
-    <div className={styles.productCardContainer}>
+    <div data-testid={`product-card-${product.id}`} className={styles.container}>
       <div className={styles.productCard}>
         <div className={styles.imageWrapper}>
           <img src={product.image} alt={product.name} className={styles.productImage} />

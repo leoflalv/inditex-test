@@ -42,6 +42,7 @@ const CategoryRow = ({ section }: CategoryRowProps) => {
 
   return (
     <div
+      data-testid={`sortable-row-${section.id}`}
       className={classNames(styles.container, {
         [styles.editMode]: isEditMode,
       })}
@@ -80,7 +81,12 @@ const CategoryRow = ({ section }: CategoryRowProps) => {
             onChange={(template) => modifyRowTemplate(section.index, template as Template)}
           />
           <RemoveButton onClick={() => removeRow(section.id)} classes={styles.removeButton} />
-          <AddButton onClick={handleAddProduct} disabled={fullSection} classes={styles.addButton} />
+          <AddButton
+            data-testid={`add-product-button-${section.id}`}
+            onClick={handleAddProduct}
+            disabled={fullSection}
+            classes={styles.addButton}
+          />
         </div>
       )}
     </div>

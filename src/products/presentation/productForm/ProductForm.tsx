@@ -29,7 +29,7 @@ const ProductForm = ({ onSubmit, onCancel }: ProductFormProps) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className={styles.form}>
+    <form onSubmit={handleSubmit} data-testid="product-form" className={styles.form}>
       <div className={styles.formGroup}>
         <label htmlFor="name">Name:</label>
         <input type="text" id="name" name="name" ref={nameRef} defaultValue="" required />

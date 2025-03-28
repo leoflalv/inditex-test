@@ -1,10 +1,10 @@
-import { renderHook } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import { DragEndEvent, DragOverEvent } from '@dnd-kit/core';
+import { renderHook } from '@testing-library/react';
 
 import { CATEGORY } from '../../../../../__mocks__/category';
-import useDragAndDrop from '../useDragAndDrop';
 import { Template } from '../../../../domain/category';
+import useDragAndDrop from '../useDragAndDrop';
 
 describe('useDragAndDrop', () => {
   const mockProps = {

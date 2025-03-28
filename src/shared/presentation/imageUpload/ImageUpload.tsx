@@ -31,10 +31,16 @@ const ImageUpload = ({ onFileSelect, isUploading, error, imageUrl }: ImageUpload
         accept="image/*"
         onChange={handleFileChange}
         className={styles.fileInput}
+        required
       />
       <div className={styles.uploadArea} onClick={handleClick}>
         {imageUrl ? (
-          <img src={imageUrl ? imageUrl : ''} alt="Preview" className={styles.preview} />
+          <img
+            src={imageUrl ? imageUrl : ''}
+            alt="Preview"
+            data-testid="image-upload-preview"
+            className={styles.preview}
+          />
         ) : (
           <div className={styles.placeholder}>
             {isUploading ? 'Uploading...' : 'Click to upload image'}

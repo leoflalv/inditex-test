@@ -5,7 +5,7 @@
       "name": "New Collection",
       "sections": [
         {
-          "id": "3eda4d07-7da4-4a14-81cd-aeaa44d03cc5",
+          "id": "f98b932a-c819-470e-b14c-b09b6f9461d6",
           "index": 0,
           "template": "left",
           "products": [
@@ -17,30 +17,37 @@
               "index": 0
             },
             {
-              "id": "ba34e93f-5ddb-47db-b7c2-07de1caa1bd2",
-              "name": "Leather Sneakers",
-              "price": 59.95,
-              "image": "https://picsum.photos/200/300",
-              "index": 1
+              "price": 123,
+              "name": "asd",
+              "image": "http://localhost:3001/api/uploads/1743125515494-505672303-image.jpg",
+              "index": 1,
+              "id": "46fef26a-fc82-4b50-b53e-e837eb7b4a91"
             }
           ]
         },
         {
-          "id": "235ecaaa-0f67-4bd8-9474-d2305ce78497",
+          "id": "90e83c13-ce9b-4baa-9849-745d8ca1a5cc",
           "index": 1,
           "template": "center",
           "products": [
+            {
+              "id": "ba34e93f-5ddb-47db-b7c2-07de1caa1bd2",
+              "name": "Leather Sneakers",
+              "price": 59.95,
+              "image": "https://picsum.photos/200/300",
+              "index": 0
+            },
             {
               "id": "9066b341-2574-4612-a84c-b4833ef40aa2",
               "name": "asdf",
               "price": 1234,
               "image": "http://localhost:3001/api/uploads/1743114854061-955727964-girl_and_cat_illustration-wallpaper-3840x2160.jpg",
-              "index": 0
+              "index": 1
             }
           ]
         },
         {
-          "id": "a0391a31-5989-44a8-aa80-572b3aec7432",
+          "id": "ed7ee0a5-48ea-41fc-bf7b-4a1b5d64ca5a",
           "index": 2,
           "template": "left",
           "products": [
@@ -68,7 +75,7 @@
           ]
         },
         {
-          "id": "c331207b-47d5-4998-830c-17db9cc45762",
+          "id": "d7cc4b52-e505-4bbf-9e37-2ef5733acfa1",
           "index": 3,
           "template": "right",
           "products": [

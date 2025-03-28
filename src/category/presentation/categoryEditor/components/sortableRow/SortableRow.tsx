@@ -1,7 +1,7 @@
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 
-import { CategorySection } from '../../../category/domain/category';
+import { CategorySection } from '../../../../domain/category';
 import { useCategoryManager } from '../../context/categoryManagerContext';
 import CategoryRow from '../categoryRow/CategoryRow';
 

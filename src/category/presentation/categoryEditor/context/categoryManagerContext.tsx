@@ -83,7 +83,7 @@ export const CategoryManagerProvider = ({
 
   function moveRow(rowIndex: number, newRowIndex: number) {
     setCategory((prev) => {
-      const newArray = [...prev.sections].sort((a, b) => a.index - b.index);
+      const newArray = [...prev.sections];
       const [item] = newArray.splice(rowIndex, 1);
       newArray.splice(newRowIndex, 0, item);
 
@@ -184,16 +184,15 @@ export const CategoryManagerProvider = ({
             const [movedProduct] = sourceProducts.splice(sourceProductIndex, 1);
             targetProducts.splice(insertAfter ? targetProductIndex + 1 : targetProductIndex, 0, {
               ...movedProduct,
-              index: targetProductIndex,
             });
           }
 
-          sourceSection.products = sourceProducts;
-          targetSection.products = targetProducts.filter((p) => p.id !== TEMP_PRODUCT_ID);
+          sourceSection.products = [...sourceProducts];
+          targetSection.products = [...targetProducts.filter((p) => p.id !== TEMP_PRODUCT_ID)];
 
           const newSections = sections
-            .map((section) => (section.id === sourceSection.id ? sourceSection : section))
-            .map((section) => (section.id === targetSection.id ? targetSection : section));
+            .map((section) => (section.id === sourceSection.id ? { ...sourceSection } : section))
+            .map((section) => (section.id === targetSection.id ? { ...targetSection } : section));
 
           return { ...prev, sections: newSections };
         }),

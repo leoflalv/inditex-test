@@ -88,7 +88,7 @@ function useDragAndDrop({
 
       if (activeSection && overSection) {
         const activeX = active.rect.current.translated?.left ?? 0;
-        const overX = over.rect.left;
+        const overX = over.rect.left + over.rect.width / 2;
 
         const overSectionProducts = overSection.products.length;
 
