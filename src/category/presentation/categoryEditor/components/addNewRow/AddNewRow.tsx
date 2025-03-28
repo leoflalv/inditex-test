@@ -1,11 +1,16 @@
+import { TEMP_PRODUCT_ID } from '../../../../../products/domain/constants';
 import { useCategoryManager } from '../../context/categoryManagerContext';
 
 import styles from './AddNewRow.module.css';
 
 const AddNewRow = () => {
-  const { isEditMode, addRow } = useCategoryManager();
+  const { isEditMode, addRow, category } = useCategoryManager();
 
-  if (!isEditMode) return null;
+  const existTempRow = category.sections
+    .slice(-1)[0]
+    .products.some((p) => p.id === TEMP_PRODUCT_ID);
+
+  if (!isEditMode || existTempRow) return null;
 
   return (
     <div data-testid="add-new-row-button" onClick={addRow} className={styles.addRowContainer}>

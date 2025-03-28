@@ -87,7 +87,10 @@ export const CategoryManagerProvider = ({
       const [item] = newArray.splice(rowIndex, 1);
       newArray.splice(newRowIndex, 0, item);
 
-      const newSections = [...newArray];
+      const newSections = [...newArray].filter(
+        (section) =>
+          section.products.length > 0 && !section.products.some((p) => p.id === TEMP_PRODUCT_ID),
+      );
 
       return { ...prev, sections: newSections };
     });
