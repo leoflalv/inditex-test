@@ -40,6 +40,46 @@ function useDragAndDrop({
     }),
   );
 
+  function move(event: DragEndEvent) {
+    const { active, over } = event;
+
+    if (!over) return;
+
+    if (active.id === over.id) return;
+
+    const activeProductId = active.id.toString();
+    const overProductId = over.id.toString();
+
+    const activeSection = category.sections.find((section) =>
+      section.products.some((product) => product.id === activeProductId),
+    );
+
+    const overSection = category.sections.find((section) =>
+      section.products.some((product) => product.id === overProductId),
+    );
+
+    if (activeSection && overSection) {
+      const activeX = active.rect.current.translated?.left ?? 0;
+      const overX = over.rect.left;
+
+      const overSectionProducts = overSection.products.length;
+
+      if (activeSection.id !== overSection.id && overSectionProducts >= 3) {
+        return;
+      }
+
+      const activeProduct = activeSection.products.find(
+        (product) => product.id === activeProductId,
+      );
+
+      const overProduct = overSection.products.find((product) => product.id === overProductId);
+
+      if (activeProduct && overProduct) {
+        moveProductToAnotherPosition(activeProduct.id, overProduct.id, overX < activeX);
+      }
+    }
+  }
+
   const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
 
@@ -63,6 +103,10 @@ function useDragAndDrop({
         moveRow(oldIndex, newIndex);
       }
     }
+
+    if (!isRow) {
+      move(event);
+    }
   };
 
   const handleDragOver = (event: DragOverEvent) => {
@@ -75,37 +119,7 @@ function useDragAndDrop({
     const isRow = active.id.toString().startsWith('row-');
 
     if (!isRow) {
-      const activeProductId = active.id.toString();
-      const overProductId = over.id.toString();
-
-      const activeSection = category.sections.find((section) =>
-        section.products.some((product) => product.id === activeProductId),
-      );
-
-      const overSection = category.sections.find((section) =>
-        section.products.some((product) => product.id === overProductId),
-      );
-
-      if (activeSection && overSection) {
-        const activeX = active.rect.current.translated?.left ?? 0;
-        const overX = over.rect.left + over.rect.width / 2;
-
-        const overSectionProducts = overSection.products.length;
-
-        if (activeSection.id !== overSection.id && overSectionProducts >= 3) {
-          return;
-        }
-
-        const activeProduct = activeSection.products.find(
-          (product) => product.id === activeProductId,
-        );
-
-        const overProduct = overSection.products.find((product) => product.id === overProductId);
-
-        if (activeProduct && overProduct) {
-          moveProductToAnotherPosition(activeProduct.id, overProduct.id, overX < activeX);
-        }
-      }
+      move(event);
     }
   };
 

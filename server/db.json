@@ -5,7 +5,7 @@
       "name": "New Collection",
       "sections": [
         {
-          "id": "3446eab4-27b2-4c05-97ac-0845b62ade1f",
+          "id": "ac2f4846-a968-4568-b134-0e08057d85a3",
           "index": 0,
           "template": "left",
           "products": [
@@ -15,19 +15,26 @@
               "price": 15.95,
               "image": "https://picsum.photos/200/300",
               "index": 0
-            }
-          ]
-        },
-        {
-          "id": "f3d482db-0c2b-4748-9a38-310224b4e7ca",
-          "index": 1,
-          "template": "left",
-          "products": [
+            },
             {
               "id": "bb13d93f-3ddb-47db-b7c2-07ea16dc767d",
               "name": "Oversized Denim Jacket",
               "price": 49.95,
               "image": "https://picsum.photos/200/300",
+              "index": 1
+            }
+          ]
+        },
+        {
+          "id": "08db62ca-0e2d-48f9-a735-61f6ea895ddf",
+          "index": 1,
+          "template": "center",
+          "products": [
+            {
+              "id": "9066b341-2574-4612-a84c-b4833ef40aa2",
+              "name": "asdf",
+              "price": 1234,
+              "image": "http://localhost:3001/api/uploads/1743114854061-955727964-girl_and_cat_illustration-wallpaper-3840x2160.jpg",
               "index": 0
             },
             {
@@ -40,29 +47,8 @@
           ]
         },
         {
-          "id": "525832fb-f27e-4efc-aaa5-2d0c07cceca4",
+          "id": "0f2b3487-3730-4438-8a60-06e40c4fc872",
           "index": 2,
-          "template": "left",
-          "products": [
-            {
-              "id": "ba34e93f-5ddb-47db-b7c2-07de1caa1bd2",
-              "name": "Leather Sneakers",
-              "price": 59.95,
-              "image": "https://picsum.photos/200/300",
-              "index": 0
-            },
-            {
-              "id": "9066b341-2574-4612-a84c-b4833ef40aa2",
-              "name": "asdf",
-              "price": 1234,
-              "image": "http://localhost:3001/api/uploads/1743114854061-955727964-girl_and_cat_illustration-wallpaper-3840x2160.jpg",
-              "index": 1
-            }
-          ]
-        },
-        {
-          "id": "cca1c1f4-eab8-4b0d-9818-b14cc3702b4f",
-          "index": 3,
           "template": "center",
           "products": [
             {

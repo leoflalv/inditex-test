@@ -25,7 +25,7 @@ const SortableProductCard = ({ product, onRemove }: SortableProductCardProps) =>
   };
 
   return (
-    <div ref={setNodeRef} style={style} {...attributes} {...listeners}>
+    <div id={product.id} ref={setNodeRef} style={style} {...attributes} {...listeners}>
       <ProductCard product={product} onRemove={onRemove} />
     </div>
   );
