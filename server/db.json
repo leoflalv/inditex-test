@@ -5,7 +5,7 @@
       "name": "New Collection",
       "sections": [
         {
-          "id": "f98b932a-c819-470e-b14c-b09b6f9461d6",
+          "id": "3446eab4-27b2-4c05-97ac-0845b62ade1f",
           "index": 0,
           "template": "left",
           "products": [
@@ -15,20 +15,34 @@
               "price": 15.95,
               "image": "https://picsum.photos/200/300",
               "index": 0
-            },
-            {
-              "price": 123,
-              "name": "asd",
-              "image": "http://localhost:3001/api/uploads/1743125515494-505672303-image.jpg",
-              "index": 1,
-              "id": "46fef26a-fc82-4b50-b53e-e837eb7b4a91"
             }
           ]
         },
         {
-          "id": "90e83c13-ce9b-4baa-9849-745d8ca1a5cc",
+          "id": "f3d482db-0c2b-4748-9a38-310224b4e7ca",
           "index": 1,
-          "template": "center",
+          "template": "left",
+          "products": [
+            {
+              "id": "bb13d93f-3ddb-47db-b7c2-07ea16dc767d",
+              "name": "Oversized Denim Jacket",
+              "price": 49.95,
+              "image": "https://picsum.photos/200/300",
+              "index": 0
+            },
+            {
+              "id": "42e4e93f-3ddb-47db-b7c2-07ee1eaa1bb2",
+              "name": "Slim Fit Jeans",
+              "price": 45.95,
+              "image": "https://picsum.photos/200/300",
+              "index": 1
+            }
+          ]
+        },
+        {
+          "id": "525832fb-f27e-4efc-aaa5-2d0c07cceca4",
+          "index": 2,
+          "template": "left",
           "products": [
             {
               "id": "ba34e93f-5ddb-47db-b7c2-07de1caa1bd2",
@@ -47,37 +61,9 @@
           ]
         },
         {
-          "id": "ed7ee0a5-48ea-41fc-bf7b-4a1b5d64ca5a",
-          "index": 2,
-          "template": "left",
-          "products": [
-            {
-              "id": "bb13d93f-3ddb-47db-b7c2-07ea16dc767d",
-              "name": "Oversized Denim Jacket",
-              "price": 49.95,
-              "image": "https://picsum.photos/200/300",
-              "index": 0
-            },
-            {
-              "id": "2e4e293f-3ddb-47db-b7c2-07ee16dc767d",
-              "name": "asdf",
-              "price": 1234,
-              "image": "http://localhost:3001/api/uploads/1743112659898-600955682-layout.jpg",
-              "index": 1
-            },
-            {
-              "id": "42e4e93f-3ddb-47db-b7c2-07ee1eaa1bb2",
-              "name": "Slim Fit Jeans",
-              "price": 45.95,
-              "image": "https://picsum.photos/200/300",
-              "index": 2
-            }
-          ]
-        },
-        {
-          "id": "d7cc4b52-e505-4bbf-9e37-2ef5733acfa1",
+          "id": "cca1c1f4-eab8-4b0d-9818-b14cc3702b4f",
           "index": 3,
-          "template": "right",
+          "template": "center",
           "products": [
             {
               "id": "df62b341-2574-4612-a84c-b4833ef40ab3",
