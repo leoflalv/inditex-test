@@ -1,4 +1,4 @@
-import TopBar from "../topbar";
+import TopBar from '../topbar';
 
 import styles from './Template.module.css';
 
@@ -9,9 +9,7 @@ interface TemplateProps {
 const Template = ({ children }: TemplateProps) => (
   <div className={styles.container}>
     <TopBar />
-    <div className={styles.content}>
-      {children}
-    </div>
+    <main className={styles.content}>{children}</main>
   </div>
 );
 

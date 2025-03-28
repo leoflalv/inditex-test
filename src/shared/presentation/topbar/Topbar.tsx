@@ -3,9 +3,9 @@ import { ZaraIcon } from '../../../assets/icons';
 import styles from './Topbar.module.css';
 
 const TopBar = () => (
-  <div className={styles.topbar}>
+  <header className={styles.topbar}>
     <ZaraIcon size={70} />
-  </div>
+  </header>
 );
 
 export default TopBar;

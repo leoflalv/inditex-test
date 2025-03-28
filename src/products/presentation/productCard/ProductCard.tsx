@@ -13,11 +13,11 @@ const ProductCard = ({ product, onRemove = () => {} }: ProductCardProps) => {
   const { isEditMode } = useCategoryManager();
 
   return (
-    <div data-testid={`product-card-${product.id}`} className={styles.container}>
+    <article data-testid={`product-card-${product.id}`} className={styles.container}>
       <div className={styles.productCard}>
-        <div className={styles.imageWrapper}>
+        <figure className={styles.imageWrapper}>
           <img src={product.image} alt={product.name} className={styles.productImage} />
-        </div>
+        </figure>
         <div className={styles.productDetails}>
           <h2 title={product.name} className="header2">
             {product.name}
@@ -30,7 +30,7 @@ const ProductCard = ({ product, onRemove = () => {} }: ProductCardProps) => {
           <RemoveButton onClick={() => onRemove(product.id)} classes={styles.removeButton} />
         )}
       </div>
-    </div>
+    </article>
   );
 };
 
